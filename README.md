@@ -61,7 +61,3 @@
 * Google Maps Platform
 * Stimulus Autocomplete（Rails7 ）
 * LINE Messaging API
-
-
-
-
