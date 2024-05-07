@@ -1,4 +1,8 @@
 {
   "name": "app",
-  "private": true
+  "private": true,
+
+  "devDependencies": {
+    "esbuild": "^0.21.0"
+  }
 }
