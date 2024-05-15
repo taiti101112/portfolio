@@ -1,27 +1,33 @@
-<div id="<%= dom_id shop %>">
-  <p>
-    <strong>Name:</strong>
-    <%= shop.name %>
-  </p>
+<div class="container mt-4">
+  <div id="<%= dom_id shop %>" class="card">
+    <div class="card-header">
+      Shop Information
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Name:</strong>
+        <%= shop.name %>
+      </p>
 
-  <p>
-    <strong>Address:</strong>
-    <%= shop.address %>
-  </p>
+      <p class="card-text">
+        <strong>Address:</strong>
+        <%= shop.address %>
+      </p>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= shop.phone_number %>
-  </p>
+      <p class="card-text">
+        <strong>Phone number:</strong>
+        <%= shop.phone_number %>
+      </p>
 
-  <p>
-    <strong>Duel space available:</strong>
-    <%= shop.duel_space_available %>
-  </p>
+      <p class="card-text">
+        <strong>Duel space available:</strong>
+        <%= shop.duel_space_available ? 'Yes' : 'No' %>
+      </p>
 
-  <p>
-    <strong>Opening hours:</strong>
-    <%= shop.opening_hours %>
-  </p>
-
+      <p class="card-text">
+        <strong>Opening hours:</strong>
+        <%= shop.opening_hours %>
+      </p>
+    </div>
+  </div>
 </div>

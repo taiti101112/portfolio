@@ -1,27 +1,38 @@
-<div id="<%= dom_id shop %>">
-  <p>
-    <strong>Name:</strong>
-    <%= shop.name %>
-  </p>
+<div class="container mt-4">
+  <div id="<%= dom_id shop %>" class="card">
+    <div class="card-header">
+      Shop Information
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Name:</strong>
+        <%= shop.name %>
+      </p>
 
-  <p>
-    <strong>Address:</strong>
-    <%= shop.address %>
-  </p>
+      <p class="card-text">
+        <strong>Address:</strong>
+        <%= shop.address %>
+      </p>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= shop.phone_number %>
-  </p>
+      <p class="card-text">
+        <strong>Phone number:</strong>
+        <%= shop.phone_number %>
+      </p>
 
-  <p>
-    <strong>Duel space available:</strong>
-    <%= shop.duel_space_available %>
-  </p>
+      <p class="card-text">
+        <strong>Duel space available:</strong>
+        <%= shop.duel_space_available ? 'Yes' : 'No' %>
+      </p>
 
-  <p>
-    <strong>Opening hours:</strong>
-    <%= shop.opening_hours %>
-  </p>
-
+      <p class="card-text">
+        <strong>Opening hours:</strong>
+        <%= shop.opening_hours %>
+      </p>
+    </div>
+    <div class="card-footer text-end">
+      <%= link_to "Edit this shop", edit_admin_shop_path(shop), class: "btn btn-primary" %>
+      <%= link_to "Back to shops", admin_shops_path, class: "btn btn-secondary" %>
+      <%= button_to "Destroy this shop", admin_shop_path(shop), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>

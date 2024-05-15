@@ -1,5 +1,5 @@
 
-<%= form_with(model: shop, url: admin_shops_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+<%= form_with(model: shop, url: admin_shop_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
   <% if shop.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <h4 class="alert-heading"><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h4>
