@@ -1,10 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @shop %>
-
-<div>
-
-  <%= link_to "Back to shops", shops_path %>
+<%= render partial: 'shops/index', locals: { shop: @shop } %>
 
 
-</div>
+
