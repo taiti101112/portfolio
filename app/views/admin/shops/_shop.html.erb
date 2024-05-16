@@ -1,27 +1,38 @@
-<div id="<%= dom_id shop %>">
-  <p>
-    <strong>Name:</strong>
-    <%= shop.name %>
-  </p>
+<div class="container mt-4">
+  <div id="<%= dom_id shop %>" class="card">
+    <div class="card-header">
+      Shop Information
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>ショップ名:</strong>
+        <%= shop.name %>
+      </p>
 
-  <p>
-    <strong>Address:</strong>
-    <%= shop.address %>
-  </p>
+      <p class="card-text">
+        <strong>住所:</strong>
+        <%= shop.address %>
+      </p>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= shop.phone_number %>
-  </p>
+      <p class="card-text">
+        <strong>電話番号:</strong>
+        <%= shop.phone_number %>
+      </p>
 
-  <p>
-    <strong>Duel space available:</strong>
-    <%= shop.duel_space_available %>
-  </p>
+      <p class="card-text">
+        <strong>デュエルスペース:</strong>
+        <%= shop.duel_space_available %>
+      </p>
 
-  <p>
-    <strong>Opening hours:</strong>
-    <%= shop.opening_hours %>
-  </p>
-
+      <p class="card-text">
+        <strong>営業時間:</strong>
+        <%= shop.opening_hours %>
+      </p>
+    </div>
+    <div class="card-footer d-flex justify-content-end">
+      <%= link_to "編集", edit_admin_shop_path(shop), class: "btn btn-primary me-2" %>
+      <%= link_to "詳細", admin_shop_path(shop), class: "btn btn-secondary me-2" %>
+      <%= button_to "削除", admin_shop_path(shop), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>

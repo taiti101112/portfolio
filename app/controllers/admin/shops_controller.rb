@@ -21,7 +21,7 @@ module Admin
     def create
       @shop = Shop.new(shop_params)
       if @shop.save
-        redirect_to [:admin, @shop], notice: 'Shop was successfully created.'
+        redirect_to [:admin, @shop], notice: 'ショップの作成が完了しました'
       else
         render :new
       end
@@ -30,7 +30,7 @@ module Admin
     def update
       @shop = Shop.find(params[:id])
       if @shop.update(shop_params)
-        redirect_to [:admin, @shop], notice: 'Shop was successfully updated.'
+        redirect_to [:admin, @shop], notice: 'ショップの更新が完了しました'
       else
         render :edit
       end
@@ -39,7 +39,7 @@ module Admin
     def destroy
       @shop = Shop.find(params[:id])
       @shop.destroy
-      redirect_to admin_shops_url, notice: 'Shop was successfully destroyed.'
+      redirect_to admin_shops_url, notice: 'ショップの削除が完了しました'
     end
 
     private
