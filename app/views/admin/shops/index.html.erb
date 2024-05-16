@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Shops</h1>
-<%= link_to "New shop", new_admin_shop_path %>
+<h1>ショップ一覧</h1>
+<%= link_to "新規作成", new_admin_shop_path, class: "btn btn-primary" %>
 
 <div id="shops">
   <% @shops.each do |shop| %>
