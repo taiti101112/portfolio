@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :shops, only: [:index, :show]
 
   # 管理画面用のルーティング
+  root 'shops#index' 
   namespace :admin do
     resources :shops
   end
