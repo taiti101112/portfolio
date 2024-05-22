@@ -6,17 +6,18 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">マップから探す</font></font></a></li>
-          <li><a href="#" class="nav-link px-2 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取り扱いタイトルから探す</font></font></a></li>
+          <li><a href="#" class="nav-link px-2 text-white">マップから探す</a></li>
+          <li><a href="#" class="nav-link px-2 text-white">取り扱いタイトルから探す</a></li>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="ショップ名で検索" aria-label="検索">
-        </form>
+        <%= search_form_for @q, class: "col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex", url: shops_path, method: :get do |f| %>
+          <%= f.search_field :name_cont, class: "form-control form-control-dark form-control-sm", placeholder: "ショップ名で検索", aria: { label: "検索" } %>
+          <%= f.submit "検索", class: "btn btn-outline-light btn-sm ms-2" %>
+        <% end %>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ログイン</font></font></button>
-          <button type="button" class="btn btn-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新規登録</font></font></button>
+          <button type="button" class="btn btn-outline-light me-2">ログイン</button>
+          <button type="button" class="btn btn-warning">新規登録</button>
         </div>
       </div>
     </div>

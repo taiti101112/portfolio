@@ -1,8 +1,14 @@
 # app/controllers/shops_controller.rb
 
 class ShopsController < ApplicationController
+
   def index
-    @shops = Shop.all
+    @q = Shop.ransack(params[:q])
+    if params[:q].present?
+      @shops = @q.result(distinct: true)
+    else
+      @shops = Shop.all
+    end
   end
 
   def show
