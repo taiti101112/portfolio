@@ -8,6 +8,7 @@ module Admin
 
     def show
       @shop = Shop.find(params[:id])
+      @tags = @shop.tag_counts_on(:tags)
     end
 
     def new
@@ -45,7 +46,7 @@ module Admin
     private
 
     def shop_params
-      params.require(:shop).permit(:name, :address, :phone_number, :duel_space_available, :opening_hours)
+      params.require(:shop).permit(:name, :address, :phone_number, :duel_space_available, :opening_hours, :tag_list,)
     end
   end
 end

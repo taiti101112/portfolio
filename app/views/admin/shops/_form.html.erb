@@ -1,4 +1,3 @@
-
 <%= form_with(model: shop, url: admin_shops_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
   <% if shop.errors.any? %>
     <div class="alert alert-danger" role="alert">
@@ -34,6 +33,12 @@
   <div class="mb-3">
     <%= form.label :営業時間, class: "form-label" %>
     <%= form.text_field :opening_hours, class: "form-control", required: true %>
+  </div>
+
+  <!-- タグ付けフォームの追加 -->
+  <div class="form-group form-group_tags">
+    <%= form.label :tag_list, "タグ", class: "form-label" %>
+    <%= form.text_field :tag_list, value: shop.tag_list.join(","), class: "form-control", data: { role: "tagsinput" } %>
   </div>
 
   <div class="mb-3">
