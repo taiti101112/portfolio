@@ -47,6 +47,8 @@ gem "bootsnap", require: false
 
 gem 'ransack'
 
+gem 'acts-as-taggable-on'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

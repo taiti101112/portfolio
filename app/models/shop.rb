@@ -5,4 +5,6 @@ class Shop < ApplicationRecord
     %w[name]
   end
 
+  acts_as_taggable
+
 end

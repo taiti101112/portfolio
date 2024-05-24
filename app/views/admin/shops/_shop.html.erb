@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <div id="<%= dom_id shop %>" class="card">
+  <div id="<%= dom_id(shop) %>" class="card">
     <div class="card-body">
       <p class="card-text">
         <strong>ショップ名:</strong>
@@ -25,6 +25,9 @@
         <strong>営業時間:</strong>
         <%= shop.opening_hours %>
       </p>
+
+      <!-- タグ表示部分をパーシャルに移動 -->
+      <%= render 'tags/tag_list', tag_list: shop.tag_list %>
     </div>
     <div class="card-footer d-flex justify-content-end">
       <%= link_to "編集", edit_admin_shop_path(shop), class: "btn btn-primary me-2" %>
