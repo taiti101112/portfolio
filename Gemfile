@@ -49,6 +49,8 @@ gem 'ransack'
 
 gem 'acts-as-taggable-on'
 
+gem 'devise'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
