@@ -28,11 +28,17 @@
           <%= f.search_field :name_cont, class: "form-control form-control-dark form-control-sm", placeholder: "ショップ名で検索", aria: { label: "検索" } %>
           <%= f.submit "検索", class: "btn btn-outline-light btn-sm ms-2" %>
         <% end %>
-
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">ログイン</button>
-          <button type="button" class="btn btn-warning">新規登録</button>
-        </div>
+        <% if user_signed_in? %>
+          <div class="text-end">
+            <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-light me-2", method: :delete, data: {turbo_method: :delete } %>
+            <button type="button" class="btn btn-warning">マイページ</button>
+          </div>
+        <% else %>
+          <div class="text-end">
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light me-2"  %>
+            <%= link_to "新規作成", new_user_registration_path, class: "btn btn-outline-light me-2" %>
+          </div>
+        <% end %>
       </div>
     </div>
 </header>
