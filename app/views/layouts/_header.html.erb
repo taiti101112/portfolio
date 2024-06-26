@@ -31,7 +31,7 @@
         <% if user_signed_in? %>
           <div class="text-end">
             <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-light me-2", method: :delete, data: {turbo_method: :delete } %>
-            <button type="button" class="btn btn-warning">マイページ</button>
+            <%= link_to "マイページ", "/users/#{current_user.id}", class: "btn btn-warning" %>
           </div>
         <% else %>
           <div class="text-end">
