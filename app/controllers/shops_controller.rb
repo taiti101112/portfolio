@@ -1,6 +1,7 @@
 # app/controllers/shops_controller.rb
 
 class ShopsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tags
 
 
@@ -23,11 +24,15 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @tags = @shop.tag_counts_on(:tags)
   end
-end
+
+  def favorites
+    @favorite_shops = current_user.favorite_shops.includes(:user).order(created_at: :desc)
+  end
 
 private
 
-def set_tags
-  # Shopモデルに設定された全てのタグを取得
-  @tags = ActsAsTaggableOn::Tag.for_context(:tags).most_used
+  def set_tags
+    # Shopモデルに設定された全てのタグを取得
+    @tags = ActsAsTaggableOn::Tag.for_context(:tags).most_used
+  end
 end

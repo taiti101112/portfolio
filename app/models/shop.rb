@@ -5,6 +5,9 @@ class Shop < ApplicationRecord
     %w[name]
   end
 
+  belongs_to :user
+  has_many :favorites, dependent: :destroy
+
   acts_as_taggable
 
 end

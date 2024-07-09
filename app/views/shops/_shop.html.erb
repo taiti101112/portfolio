@@ -27,5 +27,8 @@
     <div class="card-footer text-end">
       <%= link_to "詳細", shop_path(shop), class: "btn btn-primary" %>
     </div>
+    <div>
+      <%= render 'shops/favorite_buttons', { shop: shop } %>
+    </div>
   </div>
 </div>

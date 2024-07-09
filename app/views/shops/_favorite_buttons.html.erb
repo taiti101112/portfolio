@@ -1,0 +1,7 @@
+<div class = "ms-auto">
+  <% if current_user.favorite?(shop) %>
+    <%= render 'unfavorite', { shop: shop } %>
+  <% else %>
+    <%= render 'favorite', { shop: shop } %>
+  <% end %>
+</div>
