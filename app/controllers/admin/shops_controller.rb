@@ -1,6 +1,6 @@
 module Admin
   class ShopsController < ApplicationController
-    # before_action :authenticate_admin! # 管理者認証を有効にする場合
+    before_action :authenticate_admin! # 管理者認証を有効にする
 
     def index
       @shops = Shop.all
