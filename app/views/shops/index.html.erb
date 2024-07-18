@@ -1,10 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>ショップ一覧</h1>
+<% if @is_admin %>
+  <%= link_to "新規作成", new_admin_shop_path, class: "btn btn-primary" %>
+<% end %>
 
 <div id="shops">
   <% @shops.each do |shop| %>
-    <%= render shop %>
+    <%= render partial: "shop", locals: { shop: shop, is_admin: false } %>
   <% end %>
 </div>
 
