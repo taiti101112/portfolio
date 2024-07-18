@@ -35,6 +35,22 @@
     <%= form.text_field :opening_hours, class: "form-control", required: true %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :公式HP, class: "form-label" %>
+    <%= form.text_field :official_hp, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :Twitter, class: "form-label" %>
+    <%= form.text_field :twitter, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :Instagram, class: "form-label" %>
+    <%= form.text_field :instagram, class: "form-control", required: true %>
+  </div>
+
+
   <!-- タグ付けフォームの追加 -->
   <div class="form-group form-group_tags">
     <%= form.label :tag_list, "タグ", class: "form-label" %>

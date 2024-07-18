@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_12_064654) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_18_021250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_12_064654) do
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.integer "duel_space_available"
     t.string "opening_hours"
     t.datetime "created_at", null: false

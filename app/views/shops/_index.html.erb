@@ -5,27 +5,53 @@
         <strong>ショップ名:</strong>
         <%= shop.name %>
       </p>
+
       <p class="card-text">
         <strong>住所:</strong>
         <%= shop.address %>
       </p>
+
       <p class="card-text">
         <strong>電話番号:</strong>
         <%= shop.phone_number %>
       </p>
+
       <p class="card-text">
         <strong>デュエルスペース:</strong>
         <%= shop.duel_space_available %>
       </p>
+
       <p class="card-text">
         <strong>営業時間:</strong>
         <%= shop.opening_hours %>
       </p>
+
+      <p class="card-text">
+        <strong>公式HP:</strong>
+        <%= shop.official_hp %>
+      </p>
+
+      <p class="card-text">
+        <strong>Twitter:</strong>
+        <%= shop.twitter %>
+      </p>
+
+      <p class="card-text">
+        <strong>Instagram:</strong>
+        <%= shop.instagram %>
+      </p>
+
       <!-- タグ表示部分をパーシャルに移動 -->
       <%= render 'tags/tag_list', tag_list: shop.tag_list %>
     </div>
     <div class="card-footer d-flex justify-content-end">
-      <%= link_to "戻る", admin_shops_path, class: "btn btn-secondary me-2" %>
+      <% if @is_admin %>
+        <%= link_to "編集", edit_admin_shop_path(shop), class: "btn btn-primary me-2" %>
+        <%= link_to "戻る", shops_path, class: "btn btn-secondary me-2" %>
+        <%= button_to "削除", admin_shop_path(shop), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to "戻る", shops_path, class: "btn btn-secondary me-2" %>
+      <% end %>
     </div>
   </div>
 </div>

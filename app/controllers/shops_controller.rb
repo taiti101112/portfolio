@@ -7,6 +7,7 @@ class ShopsController < ApplicationController
 
   def index
     @q = Shop.ransack(params[:q])
+    @is_admin = current_user.admin?
     if params[:q].present?
       @shops = @q.result(distinct: true)
     else
@@ -23,6 +24,7 @@ class ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @tags = @shop.tag_counts_on(:tags)
+    @is_admin = current_user.admin?
   end
 
   def favorites
