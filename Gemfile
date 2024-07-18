@@ -51,6 +51,10 @@ gem 'acts-as-taggable-on'
 
 gem 'devise'
 
+gem "dotenv-rails"
+
+gem "geocoder"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
