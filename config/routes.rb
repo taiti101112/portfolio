@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controller: {
     registrations: 'users/registrations',
-    session: "users/sessions"
+    session: "users/sessions",
+    passwords: 'users/passwords'
   }
   # 一般ユーザーがアクセスできるショップの一覧と詳細
   resources :shops do
