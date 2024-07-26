@@ -1,0 +1,18 @@
+<h1>お問い合わせ</h1>
+<%= form_with url: contact_path, method: :post, local: true do |form| %>
+  <div class="field">
+    <%= form.label :name, "名前" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :email, "メールアドレス" %>
+    <%= form.email_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :message, "メッセージ" %>
+    <%= form.text_area :message %>
+  </div>
+  <div class="actions">
+    <%= form.submit "送信" %>
+  </div>
+<% end %>
