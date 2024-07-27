@@ -8,15 +8,21 @@ class ShopsController < ApplicationController
   def index
     @q = Shop.ransack(params[:q])
     @is_admin = current_user.admin?
+    
     if params[:q].present?
-      @shops = @q.result(distinct: true)
+      @shops = @q.result(distinct: true).includes(:business_hours)
     else
-      @shops = Shop.all
+      @shops = Shop.includes(:business_hours).all
     end
   
     # タグで絞り込む
     if params[:tag_name]
       @shops = @shops.tagged_with(params[:tag_name])
+    end
+  
+    # 営業中の店舗のみをフィルタリング
+    if params[:open_now] == '1'
+      @shops = @shops.select { |shop| shop.open_now? }
     end
   end
   
