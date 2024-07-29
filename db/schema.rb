@@ -10,19 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_27_065142) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_18_021250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "business_hours", force: :cascade do |t|
-    t.bigint "shop_id", null: false
-    t.integer "day_of_week"
-    t.time "opening_time"
-    t.time "closing_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["shop_id"], name: "index_business_hours_on_shop_id"
-  end
 
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -94,7 +84,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_27_065142) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "business_hours", "shops"
   add_foreign_key "favorites", "shops"
   add_foreign_key "favorites", "users"
   add_foreign_key "taggings", "tags"
