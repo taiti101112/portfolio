@@ -1,25 +1,40 @@
 Rails.application.routes.draw do
+  # 静的ページのルーティング
   get 'privacy_policy', to: 'pages#privacy_policy'
   get 'terms_of_service', to: 'pages#terms_of_service'
   get 'contact', to: 'pages#contact'
   post 'contact', to: 'pages#contact'
-  devise_for :users, controller: {
+
+  # Deviseによるユーザー認証
+  devise_for :users, controllers: {
     registrations: 'users/registrations',
-    session: "users/sessions",
+    sessions: 'users/sessions',
     passwords: 'users/passwords'
   }
+
   # 一般ユーザーがアクセスできるショップの一覧と詳細
-  resources :shops do
+  resources :shops, only: [:index, :show] do
     collection do
       get :favorites
     end
   end
+
+  # ユーザー管理
   resources :users
+
+  # お気に入り機能
   resources :favorites, only: %i[create destroy]
 
   # 管理画面用のルーティング
-  root to: 'shops#index' 
   namespace :admin do
-    resources :shops
+    resources :shops do
+      member do
+        get 'edit_hours'
+        patch 'update_hours'
+      end
+    end
   end
+
+  # ルートパス
+  root to: 'shops#index'
 end

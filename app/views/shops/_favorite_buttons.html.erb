@@ -1,5 +1,5 @@
-<div class = "ms-auto">
-  <% if current_user.favorite?(shop) %>
+<div class="ms-auto">
+  <% if current_user && current_user.favorite?(shop) %>
     <%= render 'unfavorite', { shop: shop } %>
   <% else %>
     <%= render 'favorite', { shop: shop } %>

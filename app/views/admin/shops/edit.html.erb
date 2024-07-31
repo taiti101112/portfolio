@@ -1,9 +1,6 @@
-<h1>ショップ編集</h1>
+<!-- app/views/admin/shops/edit.html.erb -->
+<h1>Editing Shop</h1>
 
-<%= render "edit", shop: @shop %>
+<%= render 'form', shop_business_hour_form: @shop_business_hour_form, form_url: admin_shop_path(@shop), form_method: :patch %>
 
-<br>
-
-<div>
-  <%= link_to "戻る", admin_shop_path(@shop) %> |
-</div>
+<%= link_to 'Back', shops_path %>
