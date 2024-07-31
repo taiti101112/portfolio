@@ -5,7 +5,6 @@
   <%= link_to "新規作成", new_admin_shop_path, class: "btn btn-primary" %>
 <% end %>
 
-
 <%= form_with url: shops_path, method: :get, local: true do |form| %>
   <div>
     <%= form.label :open_now, "営業中のみ表示" %>
@@ -13,11 +12,8 @@
   </div>
 <% end %>
 
-
 <div id="shops">
   <% @shops.each do |shop| %>
-    <%= render partial: "shop", locals: { shop: shop, is_admin: false } %>
+    <%= render partial: "shop", locals: { shop: shop, is_admin: @is_admin } %>
   <% end %>
 </div>
-
-

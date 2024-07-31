@@ -1,50 +1,59 @@
+# app/controllers/admin/shops_controller.rb
 module Admin
   class ShopsController < ApplicationController
-    before_action :authenticate_admin! # 管理者認証を有効にする
+    before_action :authenticate_admin!
+    before_action :set_shop, only: [:show, :edit, :update, :destroy, :edit_hours, :update_hours]
+    before_action :set_is_admin
 
     def index
       @q = Shop.ransack(params[:q])
-      @is_admin = current_user.admin?
       if params[:q].present?
         @shops = @q.result(distinct: true)
       else
         @shops = Shop.all
       end
-    
-      # タグで絞り込む
+
       if params[:tag_name]
         @shops = @shops.tagged_with(params[:tag_name])
       end
     end
 
     def show
-      @is_admin = current_user.admin?
-      @shop = Shop.find(params[:id])
       @tags = @shop.tag_counts_on(:tags)
     end
 
     def new
-      @shop = Shop.new
+      @shop_business_hour_form = ShopBusinessHourForm.new
+      @form_url = admin_shops_path
+      @form_method = :post
     end
-
+    
     def edit
-      @shop = Shop.find(params[:id])
+      shop_params = @shop.attributes.symbolize_keys.slice(*ShopBusinessHourForm::ATTRIBUTES)
+      shop_params[:tag_list] = @shop.tag_list.join(",") if @shop.tag_list.present?
+      @shop_business_hour_form = ShopBusinessHourForm.new(shop_params, @shop)
+      @form_url = admin_shop_path(@shop)
+      @form_method = :patch
     end
 
     def create
-      @shop = Shop.new(shop_params)
-      @shop.user_id = current_user.id
-      if @shop.save
-        redirect_to [:admin, @shop], notice: 'ショップの作成が完了しました'
+      @shop_business_hour_form = ShopBusinessHourForm.new(shop_business_hour_form_params)
+      @shop_business_hour_form.user_id = current_user.id # 現在のユーザーのIDを設定
+      @form_url = admin_shops_path
+      @form_method = :post
+      if @shop_business_hour_form.save
+        redirect_to [:admin, Shop.find_by(name: @shop_business_hour_form.shop_name)], notice: 'Shop and business hours were successfully created.'
       else
-        Rails.logger.error(@shop.errors.full_messages)
+        Rails.logger.error(@shop_business_hour_form.errors.full_messages)
         render :new
       end
     end
 
     def update
-      @shop = Shop.find(params[:id])
-      if @shop.update(shop_params)
+      @shop_business_hour_form = ShopBusinessHourForm.new(shop_business_hour_form_params, @shop)
+      @form_url = admin_shop_path(@shop)
+      @form_method = :patch
+      if @shop_business_hour_form.update(@shop)
         redirect_to [:admin, @shop], notice: 'ショップの更新が完了しました'
       else
         render :edit
@@ -52,17 +61,25 @@ module Admin
     end
 
     def destroy
-      @shop = Shop.find(params[:id])
       @shop.destroy
       redirect_to admin_shops_url, notice: 'ショップの削除が完了しました'
     end
 
     private
 
-    def shop_params
-      params.require(:shop).permit(:name, :address, :phone_number, :duel_space_available, :opening_hours, :tag_list, :latitude, :longitude, :user_id)
+    def set_shop
+      @shop = Shop.find(params[:id])
     end
-    
 
+    def shop_business_hour_form_params
+      params.require(:shop_business_hour_form).permit(
+        :shop_name, :address, :phone_number, :duel_space_available, :opening_hours, :official_hp, :twitter, :instagram, :tag_list,
+        business_hours_attributes: [:day_of_week, :opening_time, :closing_time, :_destroy]
+      ).merge(user_id: current_user.id) # ユーザーIDをマージ
+    end
+
+    def set_is_admin
+      @is_admin = current_user&.admin?
+    end
   end
 end

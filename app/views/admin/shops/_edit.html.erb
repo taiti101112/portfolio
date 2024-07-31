@@ -1,63 +1,84 @@
-<%= form_with(model: shop, url: admin_shop_path(shop), local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
-  <% if shop.errors.any? %>
+<%= form_with(model: @shop_business_hour_form, url: admin_shop_path(@shop_business_hour_form.shop), local: true, method: :patch, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+  <% if @shop_business_hour_form.errors.any? %>
     <div class="alert alert-danger" role="alert">
-      <h4 class="alert-heading"><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h4>
+      <h4 class="alert-heading"><%= pluralize(@shop_business_hour_form.errors.count, "error") %> prohibited this shop from being saved:</h4>
       <ul>
-        <% shop.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% @shop_business_hour_form.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :ショップ名, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control", required: true %>
+    <%= form.label :shop_name, "ショップ名", class: "form-label" %>
+    <%= form.text_field :shop_name, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :住所, class: "form-label" %>
+    <%= form.label :address, "住所", class: "form-label" %>
     <%= form.text_field :address, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :電話番号, class: "form-label" %>
+    <%= form.label :phone_number, "電話番号", class: "form-label" %>
     <%= form.number_field :phone_number, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :デュエルスペース, class: "form-label" %>
+    <%= form.label :duel_space_available, "デュエルスペース", class: "form-label" %>
     <%= form.number_field :duel_space_available, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :営業時間, class: "form-label" %>
+    <%= form.label :opening_hours, "営業時間", class: "form-label" %>
     <%= form.text_field :opening_hours, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :公式HP, class: "form-label" %>
+    <%= form.label :official_hp, "公式HP", class: "form-label" %>
     <%= form.text_field :official_hp, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :Twitter, class: "form-label" %>
+    <%= form.label :twitter, "Twitter", class: "form-label" %>
     <%= form.text_field :twitter, class: "form-control", required: true %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :Instagram, class: "form-label" %>
+    <%= form.label :instagram, "Instagram", class: "form-label" %>
     <%= form.text_field :instagram, class: "form-control", required: true %>
   </div>
 
-
   <!-- タグ付けフォームの追加 -->
-  <div class="form-group form-group_tags">
+  <div class="form-group form-group_tags mb-3">
     <%= form.label :tag_list, "タグ", class: "form-label" %>
-    <%= form.text_field :tag_list, value: shop.tag_list.join(","), class: "form-control", data: { role: "tagsinput" } %>
+    <%= form.text_field :tag_list, value: @shop_business_hour_form.tag_list.join(","), class: "form-control", data: { role: "tagsinput" } %>
   </div>
+
+  <h3>Business Hours</h3>
+  <% @shop_business_hour_form.business_hours_attributes.each_with_index do |bh, index| %>
+    <div class="field mb-3">
+      <%= form.label "business_hours_attributes_#{index}_day_of_week", "Day of the Week", class: "form-label" %>
+      <%= form.select "business_hours_attributes_#{index}_day_of_week", Date::DAYNAMES.each_with_index.map { |name, index| [name, index] }, selected: bh[:day_of_week], class: "form-control" %>
+    </div>
+    <div class="field mb-3">
+      <%= form.label "business_hours_attributes_#{index}_opening_time", "Opening Time", class: "form-label" %>
+      <%= form.time_select "business_hours_attributes_#{index}_opening_time", { minute_step: 15 }, { class: 'form-control time-select', default: bh[:opening_time] } %>
+    </div>
+    <div class="field mb-3">
+      <%= form.label "business_hours_attributes_#{index}_closing_time", "Closing Time", class: "form-label" %>
+      <%= form.time_select "business_hours_attributes_#{index}_closing_time", { minute_step: 15 }, { class: 'form-control time-select', default: bh[:closing_time] } %>
+    </div>
+    <div class="field mb-3">
+      <%= form.check_box "business_hours_attributes_#{index}__destroy", {}, '1', '0' %>
+      <%= form.label "business_hours_attributes_#{index}__destroy", "Remove", class: "form-check-label" %>
+    </div>
+  <% end %>
 
   <div class="mb-3">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit "Update Shop", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= link_to 'Back', shops_path, class: "btn btn-secondary" %>

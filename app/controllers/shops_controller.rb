@@ -1,13 +1,10 @@
-# app/controllers/shops_controller.rb
-
 class ShopsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_tags
-
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_tags, only: [:index, :show]
+  before_action :set_is_admin, only: [:index, :show, :favorites]
 
   def index
     @q = Shop.ransack(params[:q])
-    @is_admin = current_user.admin?
     
     if params[:q].present?
       @shops = @q.result(distinct: true).includes(:business_hours)
@@ -25,22 +22,24 @@ class ShopsController < ApplicationController
       @shops = @shops.select { |shop| shop.open_now? }
     end
   end
-  
 
   def show
     @shop = Shop.find(params[:id])
     @tags = @shop.tag_counts_on(:tags)
-    @is_admin = current_user.admin?
   end
 
   def favorites
     @favorite_shops = current_user.favorite_shops.includes(:user).order(created_at: :desc)
   end
 
-private
+  private
 
   def set_tags
     # Shopモデルに設定された全てのタグを取得
     @tags = ActsAsTaggableOn::Tag.for_context(:tags).most_used
+  end
+
+  def set_is_admin
+    @is_admin = current_user&.admin?
   end
 end
