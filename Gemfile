@@ -55,6 +55,10 @@ gem "dotenv-rails"
 
 gem "geocoder"
 
+gem 'pry-rails'
+
+
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
