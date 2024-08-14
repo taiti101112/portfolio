@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :shops, only: [:index, :show] do
     collection do
       get :favorites
+      get :map
     end
   end
 
