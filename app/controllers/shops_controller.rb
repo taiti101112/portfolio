@@ -32,6 +32,26 @@ class ShopsController < ApplicationController
     @favorite_shops = current_user.favorite_shops.includes(:user).order(created_at: :desc)
   end
 
+  def map
+    @q = Shop.ransack(params[:q])
+    
+    if params[:q].present?
+      @shops = @q.result(distinct: true).includes(:business_hours)
+    else
+      @shops = Shop.includes(:business_hours).all
+    end
+  
+    # タグで絞り込む
+    if params[:tag_name]
+      @shops = @shops.tagged_with(params[:tag_name])
+    end
+  
+    # 営業中の店舗のみをフィルタリング
+    if params[:open_now] == '1'
+      @shops = @shops.select { |shop| shop.open_now? }
+    end
+  end
+
   private
 
   def set_tags
