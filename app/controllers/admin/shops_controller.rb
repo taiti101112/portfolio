@@ -62,7 +62,7 @@ module Admin
 
     def destroy
       @shop.destroy
-      redirect_to admin_shops_url, notice: 'ショップの削除が完了しました'
+      redirect_to shops_url, notice: 'ショップの削除が完了しました'
     end
 
     private

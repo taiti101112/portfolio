@@ -8,18 +8,22 @@ class ShopsController < ApplicationController
     
     if params[:q].present?
       @shops = @q.result(distinct: true).includes(:business_hours)
+      gon.shops = @q.result(distinct: true).includes(:business_hours)
     else
       @shops = Shop.includes(:business_hours).all
+      gon.shops = Shop.includes(:business_hours).all
     end
   
     # タグで絞り込む
     if params[:tag_name]
       @shops = @shops.tagged_with(params[:tag_name])
+      gon.shops = @shops.tagged_with(params[:tag_name])
     end
   
     # 営業中の店舗のみをフィルタリング
     if params[:open_now] == '1'
       @shops = @shops.select { |shop| shop.open_now? }
+      gon.shops = @shops.select { |shop| shop.open_now? }
     end
   end
 
@@ -37,18 +41,22 @@ class ShopsController < ApplicationController
     
     if params[:q].present?
       @shops = @q.result(distinct: true).includes(:business_hours)
+      gon.shops = @q.result(distinct: true).includes(:business_hours)
     else
       @shops = Shop.includes(:business_hours).all
+      gon.shops = Shop.includes(:business_hours).all
     end
   
     # タグで絞り込む
     if params[:tag_name]
       @shops = @shops.tagged_with(params[:tag_name])
+      gon.shops = @shops.tagged_with(params[:tag_name])
     end
   
     # 営業中の店舗のみをフィルタリング
     if params[:open_now] == '1'
       @shops = @shops.select { |shop| shop.open_now? }
+      gon.shops = @shops.select { |shop| shop.open_now? }
     end
   end
 
