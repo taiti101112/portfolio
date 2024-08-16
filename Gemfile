@@ -55,7 +55,7 @@ gem "dotenv-rails"
 
 gem "geocoder"
 
-
+gem "gon"
 
 
 
