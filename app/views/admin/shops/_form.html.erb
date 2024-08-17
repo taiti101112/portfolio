@@ -32,11 +32,11 @@
 
   <h3>Business Hours</h3>
   <% Date::DAYNAMES.each_with_index do |day, index| %>
-    <% business_hour = @shop.business_hours.find { |bh| bh.day_of_week == index + 1 } || @shop.business_hours.build(day_of_week: index + 1) %>
+    <% business_hour = @shop.business_hours.find { |bh| bh.day_of_week == index } || @shop.business_hours.build(day_of_week: index) %>
     <div class="mb-3">
       <label class="form-label"><%= day %></label>
       <%= form.fields_for :business_hours, business_hour do |bh_form| %>
-        <%= bh_form.hidden_field :day_of_week, value: index + 1 %> <!-- 曜日を固定 -->
+        <%= bh_form.hidden_field :day_of_week, value: index %> <!-- 曜日を0から6に設定 -->
         <div class="mb-3">
           <%= bh_form.label :opening_time, "Opening Time", class: "form-label" %>
           <%= bh_form.time_select :opening_time, default: { hour: 9, minute: 0 }, class: "form-control", required: true %> <!-- デフォルトで9:00 -->
@@ -49,6 +49,7 @@
       <% end %>
     </div>
   <% end %>
+
 
   <div class="mb-3">
     <%= form.submit class: "btn btn-primary" %>
