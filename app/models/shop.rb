@@ -24,9 +24,12 @@ class Shop < ApplicationRecord
   
     opening_time = business_hour.opening_time
     closing_time = business_hour.closing_time
-    current_time.strftime("%H:%M") >= opening_time.strftime("%H:%M") && current_time.strftime("%H:%M") <= closing_time.strftime("%H:%M")
+    # Timeオブジェクトとして時間部分のみを比較
+    current_time_seconds = current_time.seconds_since_midnight
+    opening_time_seconds = opening_time.seconds_since_midnight
+    closing_time_seconds = closing_time.seconds_since_midnight
+  
+    current_time_seconds >= opening_time_seconds && current_time_seconds <= closing_time_seconds
   end
-
-
-
+  
 end
