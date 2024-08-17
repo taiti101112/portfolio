@@ -7,6 +7,7 @@ class Shop < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :business_hours, dependent: :destroy
+  accepts_nested_attributes_for :business_hours, allow_destroy: true
 
   acts_as_taggable
 

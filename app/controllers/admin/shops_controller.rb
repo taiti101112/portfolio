@@ -23,37 +23,28 @@ module Admin
     end
 
     def new
-      @shop_business_hour_form = ShopBusinessHourForm.new
-      @form_url = admin_shops_path
-      @form_method = :post
+      @shop = Shop.new
+      (1..7).each do |day|
+        @shop.business_hours.build(day_of_week: day)
+      end
     end
     
     def edit
-      shop_params = @shop.attributes.symbolize_keys.slice(*ShopBusinessHourForm::ATTRIBUTES)
-      shop_params[:tag_list] = @shop.tag_list.join(",") if @shop.tag_list.present?
-      @shop_business_hour_form = ShopBusinessHourForm.new(shop_params, @shop)
-      @form_url = admin_shop_path(@shop)
-      @form_method = :patch
+
     end
 
     def create
-      @shop_business_hour_form = ShopBusinessHourForm.new(shop_business_hour_form_params)
-      @shop_business_hour_form.user_id = current_user.id # 現在のユーザーのIDを設定
-      @form_url = admin_shops_path
-      @form_method = :post
-      if @shop_business_hour_form.save
-        redirect_to [:admin, Shop.find_by(name: @shop_business_hour_form.shop_name)], notice: 'Shop and business hours were successfully created.'
+      @shop = Shop.new(shop_params)
+      @shop.user = current_user
+      if @shop.save
+        redirect_to [:admin, @shop], notice: 'Shop and business hours were successfully created.'
       else
-        Rails.logger.error(@shop_business_hour_form.errors.full_messages)
         render :new
       end
     end
 
     def update
-      @shop_business_hour_form = ShopBusinessHourForm.new(shop_business_hour_form_params, @shop)
-      @form_url = admin_shop_path(@shop)
-      @form_method = :patch
-      if @shop_business_hour_form.update(@shop)
+      if @shop.update(shop_params)
         redirect_to [:admin, @shop], notice: 'ショップの更新が完了しました'
       else
         render :edit
@@ -71,11 +62,11 @@ module Admin
       @shop = Shop.find(params[:id])
     end
 
-    def shop_business_hour_form_params
-      params.require(:shop_business_hour_form).permit(
-        :shop_name, :address, :phone_number, :duel_space_available, :opening_hours, :official_hp, :twitter, :instagram, :tag_list,
-        business_hours_attributes: [:day_of_week, :opening_time, :closing_time, :_destroy]
-      ).merge(user_id: current_user.id) # ユーザーIDをマージ
+    def shop_params
+      params.require(:shop).permit(
+        :name, :address, :phone_number, :duel_space_available, :opening_hours, :official_hp, :twitter, :instagram, :tag_list,
+        business_hours_attributes: [:id, :day_of_week, :opening_time, :closing_time, :_destroy]
+      )
     end
 
     def set_is_admin
