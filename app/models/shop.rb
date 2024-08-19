@@ -31,5 +31,10 @@ class Shop < ApplicationRecord
   
     current_time_seconds >= opening_time_seconds && current_time_seconds <= closing_time_seconds
   end
+
+  scope :open_now, -> {
+    current_time = Time.zone.now
+    joins(:business_hours).where('business_hours.opening_time <= ? AND business_hours.closing_time >= ?', current_time, current_time )
+  }
   
 end

@@ -57,6 +57,7 @@ gem "geocoder"
 
 gem "gon"
 
+gem 'kaminari'
 
 
 # Use Sass to process CSS

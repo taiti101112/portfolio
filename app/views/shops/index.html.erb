@@ -17,3 +17,8 @@
     <%= render partial: "shop", locals: { shop: shop, is_admin: @is_admin } %>
   <% end %>
 </div>
+
+<% if @shops.present? %>
+  <%= paginate @shops %>
+<% end %>
+
