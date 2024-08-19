@@ -28,17 +28,17 @@
 
       <p class="card-text">
         <strong>公式HP:</strong>
-        <%= shop.official_hp %>
+        <%= link_to shop.official_hp, shop.official_hp, target: "_blank", rel: "noopener noreferrer" if shop.official_hp.present? %>
       </p>
 
       <p class="card-text">
         <strong>Twitter:</strong>
-        <%= shop.twitter %>
+        <%= link_to shop.twitter, shop.twitter, target: "_blank", rel: "noopener noreferrer" if shop.twitter.present? %>
       </p>
 
       <p class="card-text">
         <strong>Instagram:</strong>
-        <%= shop.instagram %>
+        <%= link_to shop.instagram, shop.instagram, target: "_blank", rel: "noopener noreferrer" if shop.instagram.present? %>
       </p>
 
       <!-- タグ表示部分をパーシャルに移動 -->
