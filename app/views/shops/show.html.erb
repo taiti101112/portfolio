@@ -2,10 +2,8 @@
 
 <%= render partial: 'shops/index', locals: { shop: @shop } %>
 
-<h5>住所</h5>
-<p><%= @shop.address %></p>
-<p>Latitude: <%= @shop.latitude %></p>
-<p>Longitude: <%= @shop.longitude %></p>
+<p><%= @shop.name %></p>
+
 
 <!-- Googleマップ表示エリア(地図を表示) -->
 <div id="map" style="height: 400px; width: 100%;"></div>

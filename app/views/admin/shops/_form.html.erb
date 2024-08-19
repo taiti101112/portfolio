@@ -30,6 +30,27 @@
     <%= form.number_field :duel_space_available, class: "form-control", required: true %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :official_hp, "Official Website", class: "form-label" %>
+    <%= form.url_field :official_hp, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :twitter, "Twitter", class: "form-label" %>
+    <%= form.url_field :twitter, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :instagram, "Instagram", class: "form-label" %>
+    <%= form.url_field :instagram, class: "form-control" %>
+  </div>
+
+<div class="mb-3">
+  <%= form.label :tag_list, "Tags", class: "form-label" %>
+  <%= form.text_field :tag_list, value: @shop.tag_list.join(", "), class: "form-control" %>
+  <small class="form-text text-muted">Enter tags separated by commas</small>
+</div>
+
   <h3>Business Hours</h3>
   <% Date::DAYNAMES.each_with_index do |day, index| %>
     <% business_hour = @shop.business_hours.find { |bh| bh.day_of_week == index } || @shop.business_hours.build(day_of_week: index) %>
