@@ -46,7 +46,7 @@
 </header>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('turbo:load', function() {
     // マップ画面にいる場合、フォームのactionをmapアクションに変更
     if (window.location.pathname === '<%= map_shops_path %>') {
       document.getElementById('search-form').setAttribute('action', '<%= map_shops_path %>');
