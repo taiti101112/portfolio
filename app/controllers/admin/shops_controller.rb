@@ -3,6 +3,7 @@ module Admin
   class ShopsController < ApplicationController
     before_action :authenticate_admin!
     before_action :set_shop, only: [:show, :edit, :update, :destroy, :edit_hours, :update_hours]
+    before_action :set_tags
     before_action :set_is_admin
 
     def index
@@ -60,6 +61,11 @@ module Admin
 
     def set_shop
       @shop = Shop.find(params[:id])
+    end
+
+    def set_tags
+      # Shopモデルに設定された全てのタグを取得
+      @tags = ActsAsTaggableOn::Tag.for_context(:tags).most_used
     end
 
     def shop_params
