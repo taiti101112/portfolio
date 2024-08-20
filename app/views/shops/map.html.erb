@@ -13,31 +13,32 @@
     var markers = [];
 
     <% @shops.each do |shop| %>
-      (function(shop) {
-        var marker = new google.maps.Marker({
-          position: {lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
-          map: map,
-          title: '<%= shop.name %>'
-        });
+      var marker = new google.maps.Marker({
+        position: {lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
+        map: map,
+        title: '<%= j shop.name %>'
+      });
 
-        var infowindow = new google.maps.InfoWindow({
-          content: '<a href="<%= shop_path(shop) %>"><%= j shop.name %></a>' // ショップ名にリンクを挿入
-        });
+      var infowindow = new google.maps.InfoWindow({
+        content: '<a href="<%= shop_path(shop) %>"><%= j shop.name %></a>'
+      });
 
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
 
-        markers.push(marker);
-      })(<%= shop.to_json.html_safe %>);
+      markers.push(marker);
     <% end %>
   }
 
-  // Google Maps APIの初期化
-  document.addEventListener('DOMContentLoaded', function() {
-    initMap();
+  document.addEventListener('turbo:load', function() {
+    if (document.getElementById('map')) {
+      if (typeof google !== 'undefined') {
+        initMap(); // Google Maps APIが読み込まれている場合はinitMapを直接呼ぶ
+      }
+    }
   });
 </script>
 
 <!-- Google Maps APIの読み込み -->
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
