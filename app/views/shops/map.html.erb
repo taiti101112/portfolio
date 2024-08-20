@@ -13,11 +13,23 @@
     var markers = [];
 
     <% @shops.each do |shop| %>
-      markers.push(new google.maps.Marker({
-        position: {lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
-        map: map,
-        title: '<%= shop.name %>'
-      }));
+      (function(shop) {
+        var marker = new google.maps.Marker({
+          position: {lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
+          map: map,
+          title: '<%= shop.name %>'
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: '<a href="<%= shop_path(shop) %>"><%= j shop.name %></a>' // ショップ名にリンクを挿入
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        markers.push(marker);
+      })(<%= shop.to_json.html_safe %>);
     <% end %>
   }
 
@@ -29,4 +41,3 @@
 
 <!-- Google Maps APIの読み込み -->
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>" async defer></script>
-
