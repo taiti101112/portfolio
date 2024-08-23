@@ -23,7 +23,7 @@
 
       <p class="card-text">
         <strong>営業時間:</strong>
-        <%= shop.opening_hours.gsub("\n", "<br>").html_safe %>
+        <%= shop.opening_hours.present? ? shop.opening_hours.gsub("\n", "<br>").html_safe : "" %>
       </p>
 
       <p class="card-text">
