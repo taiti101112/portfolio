@@ -53,7 +53,7 @@
         <%= link_to "詳細", shop_path(shop), class: "btn btn-primary me-2" %>
       <% end %>
     </div>
-    <% unless @is_admin %>
+    <% if !@is_admin && current_user.present? %>
       <div>
         <%= render 'shops/favorite_buttons', { shop: shop } %>
       </div>
