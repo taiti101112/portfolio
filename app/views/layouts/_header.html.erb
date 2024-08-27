@@ -1,18 +1,21 @@
-<header class="p-3 bg-dark text-white sticky-top">
+<header class="p-3 bg-dark text-white shadow-lg sticky-top" style="background: linear-gradient(90deg, rgba(58,123,213,1) 0%, rgba(58,213,173,1) 100%);">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="ブートストラップ"><use xlink:href="#bootstrap"></use></svg>
+        <i class="bi bi-house-door-fill me-2" style="font-size: 1.5rem;"></i>
+        <span class="fs-4 fw-bold">TCG-PLACE</span>
       </a>
 
-      <!-- Updated navigation with dropdown -->
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><%= link_to 'マップから探す', map_shops_path, class: 'nav-link px-2 text-white' %></li>
+      <!-- Navigation with Dropdown -->
+      <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+        <li class="nav-item">
+          <%= link_to 'マップから探す', map_shops_path, class: 'nav-link px-2 text-light' %>
+        </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle text-light px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             取り扱いタイトルから探す
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <% if @tags.present? %>
               <% @tags.each do |tag| %>
                 <li><%= link_to tag.name, shops_path(tag_name: tag.name), class: "dropdown-item" %></li>
@@ -29,28 +32,17 @@
         <%= f.submit "検索", class: "btn btn-outline-light btn-sm ms-2" %>
       <% end %>
 
-      <% if user_signed_in? %>
-        <div class="text-end">
+      <div class="text-end">
+        <% if user_signed_in? %>
           <%= link_to "ショップ一覧", shops_path, class: "btn btn-outline-light me-2" %>
-          <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-light me-2", method: :delete, data: {turbo_method: :delete } %>
-          <%= link_to "マイページ", "/users/#{current_user.id}", class: "btn btn-warning" %>
-        </div>
-      <% else %>
-        <div class="text-end">
+          <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-light me-2", method: :delete, data: { turbo_method: :delete } %>
+          <%= link_to "マイページ", "/users/#{current_user.id}", class: "btn btn-outline-light me-2" %>
+        <% else %>
           <%= link_to "ショップ一覧", shops_path, class: "btn btn-outline-light me-2" %>
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light me-2"  %>
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light me-2" %>
           <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light me-2" %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </header>
-
-<script>
-  document.addEventListener('turbo:load', function() {
-    // マップ画面にいる場合、フォームのactionをmapアクションに変更
-    if (window.location.pathname === '<%= map_shops_path %>') {
-      document.getElementById('search-form').setAttribute('action', '<%= map_shops_path %>');
-    }
-  });
-</script>
