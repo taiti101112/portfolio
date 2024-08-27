@@ -1,24 +1,28 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <h1 class="mb-4">ショップ一覧</h1>
 
-<h1>ショップ一覧</h1>
-<% if @is_admin %>
-  <%= link_to "新規作成", new_admin_shop_path, class: "btn btn-primary" %>
-<% end %>
+  <% if @is_admin %>
+    <%= link_to "新規作成", new_admin_shop_path, class: "btn btn-primary mb-4 shadow" %>
+  <% end %>
 
-<%= form_with url: shops_path, method: :get, local: true do |form| %>
-  <div>
-    <%= form.label :open_now, "営業中のみ表示" %>
-    <%= form.check_box :open_now, { checked: params[:open_now] == '1', onchange: 'this.form.submit();' }, '1', '0' %>
+  <%= form_with url: shops_path, method: :get, local: true, class: "mb-4" do |form| %>
+    <div class="form-check form-switch">
+      <%= form.check_box :open_now, { class: "form-check-input", checked: params[:open_now] == '1', onchange: 'this.form.submit();' }, '1', '0' %>
+      <%= form.label :open_now, "営業中のみ表示", class: "form-check-label" %>
+    </div>
+  <% end %>
+
+  <div id="shops" class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+    <% @shops.each do |shop| %>
+      <div class="col">
+        <%= render partial: "shop", locals: { shop: shop, is_admin: @is_admin } %>
+      </div>
+    <% end %>
   </div>
-<% end %>
 
-<div id="shops">
-  <% @shops.each do |shop| %>
-    <%= render partial: "shop", locals: { shop: shop, is_admin: @is_admin } %>
+  <% if @shops.present? %>
+    <div class="mt-4">
+      <%= paginate @shops %>
+    </div>
   <% end %>
 </div>
-
-<% if @shops.present? %>
-  <%= paginate @shops %>
-<% end %>
-

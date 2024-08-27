@@ -1,60 +1,80 @@
 <div class="container mt-4">
-  <div id="<%= dom_id(shop) %>" class="card">
+  <div id="<%= dom_id(shop) %>" class="card shadow-sm border-0">
     <div class="card-body">
-      <p class="card-text">
-        <strong>ショップ名:</strong>
-        <%= shop.name %>
-      </p>
+      <h5 class="card-title text-primary mb-3"><i class="bi bi-shop me-2"></i><%= shop.name %></h5>
 
-      <p class="card-text">
-        <strong>住所:</strong>
-        <%= shop.address %>
-      </p>
+      <div class="table-responsive">
+        <table class="table table-borderless mb-0">
+          <tbody>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-geo-alt-fill text-danger me-2"></i>住所
+              </th>
+              <td><%= shop.address %></td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-telephone-fill text-success me-2"></i>電話番号
+              </th>
+              <td><%= shop.phone_number %></td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-people-fill text-info me-2"></i>デュエルスペース
+              </th>
+              <td><%= shop.duel_space_available %></td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-clock-fill text-warning me-2"></i>営業時間
+              </th>
+              <td>
+                <%= shop.opening_hours.present? ? shop.opening_hours.gsub("\n", "<br>").html_safe : "情報がありません" %>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-globe text-primary me-2"></i>公式HP
+              </th>
+              <td>
+                <%= link_to shop.official_hp, shop.official_hp, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" if shop.official_hp.present? %>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-twitter text-info me-2"></i>Twitter
+              </th>
+              <td>
+                <%= link_to shop.twitter, shop.twitter, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" if shop.twitter.present? %>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="text-nowrap">
+                <i class="bi bi-instagram text-danger me-2"></i>Instagram
+              </th>
+              <td>
+                <%= link_to shop.instagram, shop.instagram, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" if shop.instagram.present? %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <p class="card-text">
-        <strong>電話番号:</strong>
-        <%= shop.phone_number %>
-      </p>
-
-      <p class="card-text">
-        <strong>デュエルスペース:</strong>
-        <%= shop.duel_space_available %>
-      </p>
-
-      <p class="card-text">
-        <strong>営業時間:</strong>
-        <%= shop.opening_hours.present? ? shop.opening_hours.gsub("\n", "<br>").html_safe : "" %>
-      </p>
-
-      <p class="card-text">
-        <strong>公式HP:</strong>
-        <%= link_to shop.official_hp, shop.official_hp, target: "_blank", rel: "noopener noreferrer" if shop.official_hp.present? %>
-      </p>
-
-      <p class="card-text">
-        <strong>Twitter:</strong>
-        <%= link_to shop.twitter, shop.twitter, target: "_blank", rel: "noopener noreferrer" if shop.twitter.present? %>
-      </p>
-
-      <p class="card-text">
-        <strong>Instagram:</strong>
-        <%= link_to shop.instagram, shop.instagram, target: "_blank", rel: "noopener noreferrer" if shop.instagram.present? %>
-      </p>
-
-      <!-- タグ表示部分をパーシャルに移動 -->
       <%= render 'tags/tag_list', tag_list: shop.tag_list %>
     </div>
-    <div class="card-footer d-flex justify-content-end">
+
+    <div class="card-footer bg-light d-flex justify-content-end border-top-0">
       <% if @is_admin %>
-        <%= link_to "編集", edit_admin_shop_path(shop), class: "btn btn-primary me-2" %>
-        <%= link_to "詳細", shop_path(shop), class: "btn btn-secondary me-2" %>
-        <%= button_to "削除", admin_shop_path(shop), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <%= link_to "編集", edit_admin_shop_path(shop), class: "btn btn-outline-primary me-2" %>
+        <%= link_to "詳細", shop_path(shop), class: "btn btn-outline-secondary me-2" %>
+        <%= button_to "削除", admin_shop_path(shop), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
       <% else %>
-        <%= link_to "詳細", shop_path(shop), class: "btn btn-primary me-2" %>
+        <%= link_to "詳細", shop_path(shop), class: "btn btn-outline-primary me-2" %>
       <% end %>
     </div>
+
     <% if !@is_admin && current_user.present? %>
-      <div>
+      <div class="card-footer bg-light border-top-0">
         <%= render 'shops/favorite_buttons', { shop: shop } %>
       </div>
     <% end %>
