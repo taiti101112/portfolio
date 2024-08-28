@@ -6,12 +6,30 @@
  */
 
 
- /* テスト用のスタイル */
-body {
-  background-color: yellow !important; /* ページ全体の背景を黄色に */
+/* app/assets/stylesheets/application.scss */
+
+/* タグのスタイル */
+.tag {
+  display: inline-block;
+  background-color: #007bff; /* タグの背景色 (お好みで変更) */
+  color: #fff; /* テキストカラー */
+  padding: 0.4em 0.75em; /* タグの内側の余白 */
+  border-radius: 15px; /* 角丸にしてバッジ風に */
+  margin: 0.2em; /* タグ同士の間隔 */
+  font-size: 0.9em; /* フォントサイズを調整 */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* ホバー時のアニメーション */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* 影をつけて立体感を演出 */
+  cursor: pointer; /* カーソルをポインターに */
 }
 
-h1 {
-  color: red !important; /* 見出しのテキストを赤色に */
-  font-size: 50px !important; /* 見出しのフォントサイズを大きく */
+.tag:hover {
+  background-color: #0056b3; /* ホバー時の背景色 */
+  transform: translateY(-2px); /* ホバー時に少し浮き上がる効果 */
 }
+
+.tag .text-white {
+  text-decoration: none; /* リンクの下線を削除 */
+}
+
+
+
