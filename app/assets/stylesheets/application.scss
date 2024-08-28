@@ -4,3 +4,14 @@
  *= require_tree .
  *= require_self
  */
+
+
+ /* テスト用のスタイル */
+body {
+  background-color: yellow !important; /* ページ全体の背景を黄色に */
+}
+
+h1 {
+  color: red !important; /* 見出しのテキストを赤色に */
+  font-size: 50px !important; /* 見出しのフォントサイズを大きく */
+}
