@@ -33,3 +33,60 @@
 
 
 
+
+
+/* ログインフォームのスタイル */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ビューポートの高さに合わせて中央に配置 */
+  background-color: #f7f7f9; /* 背景色を少し明るくしてフォームを引き立てる */
+}
+
+.login-form {
+  max-width: 400px; /* フォームの最大幅を設定 */
+  background-color: #ffffff; /* フォームの背景色 */
+  border: 1px solid #e3e3e3; /* 薄いボーダーで囲む */
+  border-radius: 10px; /* 角丸にする */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影をつけて立体感を出す */
+}
+
+.btn-primary {
+  background-color: #007bff; /* ボタンの色 */
+  border: none; /* ボーダーを削除 */
+  transition: background-color 0.3s; /* ホバー時のアニメーション */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* ホバー時の色変更 */
+}
+
+
+
+/* サインアップフォームのスタイル */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ビューポートの高さに合わせて中央に配置 */
+  background-color: #f7f7f9; /* 背景色を少し明るくしてフォームを引き立てる */
+}
+
+.signup-form {
+  max-width: 400px; /* フォームの最大幅を設定 */
+  background-color: #ffffff; /* フォームの背景色 */
+  border: 1px solid #e3e3e3; /* 薄いボーダーで囲む */
+  border-radius: 10px; /* 角丸にする */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影をつけて立体感を出す */
+}
+
+.btn-primary {
+  background-color: #007bff; /* ボタンの色 */
+  border: none; /* ボーダーを削除 */
+  transition: background-color 0.3s; /* ホバー時のアニメーション */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* ホバー時の色変更 */
+}
