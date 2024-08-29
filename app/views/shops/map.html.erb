@@ -1,27 +1,41 @@
-<h1>Shop Map</h1>
+<div class="container py-4">
+  <!-- 見出しをスタイリッシュに -->
+  <h1 class="text-center mb-4 text-primary">ショップマップ</h1>
 
-<div id="map" style="height: 500px;"></div>
+  <!-- Googleマップ表示エリア -->
+  <div id="map" style="height: 500px;" class="rounded shadow-sm border"></div>
+</div>
 
 <script>
   function initMap() {
+    // マップの設定
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
-      center: {lat: 35.6895, lng: 139.6917} // 中心を東京に設定
+      center: { lat: 35.6895, lng: 139.6917 } // 東京を中心に設定
     });
 
     var markers = [];
     var infowindow = new google.maps.InfoWindow(); // すべてのマーカーで共有するinfowindow
 
+    // 各ショップのマーカー設定
     <% @shops.each do |shop| %>
       (function() {
         var marker = new google.maps.Marker({
-          position: {lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
+          position: { lat: <%= shop.latitude %>, lng: <%= shop.longitude %> },
           map: map,
           title: '<%= j shop.name %>'
         });
 
-        var contentString = '<a href="<%= shop_path(shop) %>"><%= j shop.name %></a>';
+        // インフォウィンドウの内容を設定
+        var contentString = `
+          <div style="min-width: 200px; padding: 10px;">
+            <h5 class="mb-1 text-primary"><i class="bi bi-shop me-2"></i><%= j shop.name %></h5>
+            <p class="mb-1 text-muted"><i class="bi bi-geo-alt-fill me-1"></i><%= j shop.address %></p>
+            <a href="<%= shop_path(shop) %>" class="btn btn-outline-primary btn-sm mt-2">詳細を見る</a>
+          </div>
+        `;
 
+        // マーカーのクリックイベント
         marker.addListener('click', function() {
           infowindow.setContent(contentString); // クリックしたピンに対応する内容を設定
           infowindow.open(map, marker); // 新たにクリックされたピンに対応するinfowindowを開く
@@ -32,6 +46,7 @@
     <% end %>
   }
 
+  // Google Maps APIが読み込まれたときに地図を初期化
   document.addEventListener('turbo:load', function() {
     if (document.getElementById('map')) {
       if (typeof google !== 'undefined') {
