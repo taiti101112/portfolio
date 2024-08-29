@@ -1,18 +1,31 @@
-<h1>お問い合わせ</h1>
-<%= form_with url: contact_path, method: :post, local: true do |form| %>
-  <div class="field">
-    <%= form.label :name, "名前" %>
-    <%= form.text_field :name %>
-  </div>
-  <div class="field">
-    <%= form.label :email, "メールアドレス" %>
-    <%= form.email_field :email %>
-  </div>
-  <div class="field">
-    <%= form.label :message, "メッセージ" %>
-    <%= form.text_area :message %>
-  </div>
-  <div class="actions">
-    <%= form.submit "送信" %>
-  </div>
-<% end %>
+<div class="container py-5">
+  <!-- お問い合わせフォームの見出し -->
+  <h1 class="text-center mb-4 text-primary">お問い合わせ</h1>
+
+  <!-- お問い合わせフォーム -->
+  <%= form_with url: contact_path, method: :post, local: true, html: { class: "contact-form shadow p-4 rounded bg-light" } do |form| %>
+
+    <!-- 名前フィールド -->
+    <div class="mb-3">
+      <%= form.label :name, "名前", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "お名前をご入力ください" %>
+    </div>
+
+    <!-- メールアドレスフィールド -->
+    <div class="mb-3">
+      <%= form.label :email, "メールアドレス", class: "form-label" %>
+      <%= form.email_field :email, class: "form-control", placeholder: "example@example.com" %>
+    </div>
+
+    <!-- メッセージフィールド -->
+    <div class="mb-3">
+      <%= form.label :message, "メッセージ", class: "form-label" %>
+      <%= form.text_area :message, class: "form-control", rows: 5, placeholder: "お問い合わせ内容をご入力ください" %>
+    </div>
+
+    <!-- 送信ボタン -->
+    <div class="d-grid">
+      <%= form.submit "送信", class: "btn btn-primary btn-block" %>
+    </div>
+  <% end %>
+</div>
