@@ -20,4 +20,9 @@ class User < ApplicationRecord
   def favorite?(shop)
     favorite_shops.include?(shop)
   end
+
+  def admin?
+    admin
+  end
+  
 end
