@@ -34,6 +34,8 @@ class UsersController < ApplicationController
   end
 
   def set_user
+    return if params[:id] == "sign_out" # ログアウトリクエストをスキップ
+  
     @user = User.find(params[:id])
   end
 
