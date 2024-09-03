@@ -12,10 +12,10 @@ Rails.application.configure do
 
   # CSRF保護を有効にする
   config.action_controller.allow_forgery_protection = true
+  config.force_ssl = true
 
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
-  config.force_ssl = true
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass

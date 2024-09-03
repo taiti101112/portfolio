@@ -1,6 +1,9 @@
 <div class="signup-container d-flex justify-content-center align-items-center vh-100">
   <div class="signup-form-wrapper text-center">
     <h2 class="mb-3">新規登録</h2>
+    
+    <!-- CSRFトークンを含める -->
+    <%= csrf_meta_tags %>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "signup-form shadow p-4 rounded" }) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>

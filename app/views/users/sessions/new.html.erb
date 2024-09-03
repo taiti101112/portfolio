@@ -2,6 +2,9 @@
   <div class="login-form-wrapper text-center">
     <h2 class="mb-3">ログイン</h2>
 
+    <!-- CSRFトークンを含める -->
+    <%= csrf_meta_tags %>
+
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form shadow p-4 rounded" }) do |f| %>
 
       <div class="mb-3">
