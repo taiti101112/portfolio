@@ -15,6 +15,8 @@ Rails.application.configure do
 
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
+  config.force_ssl = true
+
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
