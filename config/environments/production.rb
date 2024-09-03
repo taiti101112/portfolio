@@ -3,8 +3,15 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   config.cache_classes = true
   config.eager_load = true
+
+  # セッションストアの設定
+  config.session_store :cookie_store, key: '_tcg_place_session', secure: Rails.env.production?, same_site: :lax
+
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+
+  # CSRF保護を有効にする
+  config.action_controller.allow_forgery_protection = true
 
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
