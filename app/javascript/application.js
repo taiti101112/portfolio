@@ -1,5 +1,8 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+// app/javascript/application.js
+
+import { Turbo } from "@hotwired/turbo-rails";
 import Rails from "@rails/ujs";
-import "@hotwired/turbo-rails"
-import "controllers"
+import "controllers";
+
+Turbo.session.drive = true; // Turboの動作を有効にします
 Rails.start();
