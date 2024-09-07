@@ -59,6 +59,4 @@
 
 
 ## ER図
-
-ER図はこちら
-https://drive.google.com/file/d/1bhDjsTX4ptZIJfXQkS2I5OuHI9hmno68/view?usp=drive_link
+[ER図はこちら](https://drive.google.com/file/d/1bhDjsTX4ptZIJfXQkS2I5OuHI9hmno68/view?usp=drive_link)
