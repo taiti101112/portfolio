@@ -5,7 +5,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # セッションストアの設定
-  # config.session_store :cookie_store, key: '_tcg_place_session', secure: Rails.env.production?, same_site: :lax
+  config.session_store :cookie_store, key: '_tcg_place_session', secure: Rails.env.production?, same_site: :lax
 
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
