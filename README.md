@@ -59,5 +59,5 @@
 
 
 ## ER図
-[ER図はこちら](https://i.gyazo.com/3f3fb6ac9dcb4ed9c030417e8e02de4a.png)
+[ER図はこちら](https://i.gyazo.com/dff08d98a9f76553034946ab621cd0c1.png)
 
