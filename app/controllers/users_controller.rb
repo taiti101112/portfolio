@@ -3,10 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
-
   def show
-    # @user = User.find_by(id: params[:id])
-    @user = User.find_by(id: current_user.id)
   end
 
   private
@@ -20,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    redirect_to(root_path) unless @user == current_user
+    # `@user` が存在し、かつ現在のユーザーと一致するかを確認
+    redirect_to(root_path) unless @user && @user == current_user
   end
-
 end
