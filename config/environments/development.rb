@@ -68,16 +68,22 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+  # メール設定
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain: 'localhost', 
+    domain: 'localhost',
     user_name: ENV['MAILER_SENDER'],
     password: ENV['MAILER_PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
 
+  # セッションストアの設定
+  config.session_store :cookie_store, 
+    key: '_tcg_place_session', 
+    secure: false,            # 開発環境では HTTPS を要求しない設定
+    same_site: :lax           # same_site を lax に設定してセッション管理を安定化
 end
