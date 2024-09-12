@@ -67,6 +67,9 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  # config/environments/development.rb
+  config.web_console.permissions = '192.168.65.0/24' # 許可したいIPアドレスや範囲を指定
+
 
   # メール設定
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   # ユーザー管理
-  resources :users
+  resources :users, only: [:show]
 
   # お気に入り機能
   resources :favorites, only: %i[create destroy]
