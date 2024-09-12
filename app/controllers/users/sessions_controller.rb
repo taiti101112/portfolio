@@ -14,9 +14,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    Rails.logger.info "Logging out user with ID: #{current_user.id}" if current_user
+    super
+  end
 
   # protected
 
