@@ -24,8 +24,8 @@
 
 <!-- Googleマップ表示用のJavascript -->
 <script>
-  function initMap() {
-    console.log("initMap function called");
+function initMapForDetailPage() {
+  console.log("initMapForDetailPage function called");
 
     // 地図の位置情報(緯度・経度)を取得
     let mapPosition = {lat: <%= @shop.latitude || 35.681236 %>, lng: <%= @shop.longitude || 139.767125 %> };
@@ -76,7 +76,6 @@
     console.log("Marker click listener added");
   }
 
-  window.initMap = initMap;
+  window.initMapForDetailPage = initMapForDetailPage;
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
