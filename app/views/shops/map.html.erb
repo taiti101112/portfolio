@@ -7,7 +7,7 @@
 </div>
 
 <script>
-  function initMap() {
+  function initMapForMapPage() {
     // マップの設定
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
@@ -47,13 +47,13 @@
   }
 
   // Google Maps APIが読み込まれたときに地図を初期化
-  document.addEventListener('turbo:load', function() {
-    if (document.getElementById('map')) {
-      if (typeof google !== 'undefined') {
-        initMap(); // Google Maps APIが読み込まれている場合はinitMapを直接呼ぶ
-      }
+document.addEventListener('turbo:load', function() {
+  if (document.getElementById('map')) {
+    if (typeof google !== 'undefined') {
+      initMapForMapPage(); // Google Maps APIが読み込まれている場合はinitMapForMapPageを直接呼ぶ
     }
-  });
+  }
+});
 </script>
 
 <!-- Google Maps APIの読み込み -->
