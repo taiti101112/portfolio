@@ -1,81 +1,57 @@
 <div class="container py-4">
-  <!-- 通知メッセージ -->
   <% if notice.present? %>
     <div class="alert alert-success text-center mb-4" role="alert">
       <%= notice %>
     </div>
   <% end %>
 
-  <!-- ショップ情報カード -->
   <div class="card shadow-sm border-0 mb-4">
     <div class="card-body text-center">
-      <!-- ショップ名と住所 -->
       <h3 class="card-title text-primary"><i class="bi bi-shop me-2"></i><%= @shop.name %></h3>
       <p class="card-text text-muted"><i class="bi bi-geo-alt-fill me-1"></i><%= @shop.address %></p>
     </div>
-
-    <!-- Googleマップ表示エリア -->
     <div id="map" style="height: 400px; width: 100%;" class="rounded-bottom"></div>
   </div>
 
-  <!-- ショップの追加情報を表示する部分 -->
   <%= render partial: 'shops/index', locals: { shop: @shop } %>
 </div>
 
-<!-- Googleマップ表示用のJavascript -->
 <script>
 function initMapForDetailPage() {
-  console.log("initMapForDetailPage function called");
+  let mapPosition = {lat: <%= @shop.latitude || 35.681236 %>, lng: <%= @shop.longitude || 139.767125 %> };
 
-    // 地図の位置情報(緯度・経度)を取得
-    let mapPosition = {lat: <%= @shop.latitude || 35.681236 %>, lng: <%= @shop.longitude || 139.767125 %> };
-    console.log("Map Position:", mapPosition);
-
-    if (!mapPosition.lat || !mapPosition.lng) {
-      console.error("Invalid latitude or longitude value");
-      return;
-    }
-
-    // マップの設定
-    let map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: mapPosition,
-      mapTypeControl: false,
-      fullscreenControl: true,
-      streetViewControl: true,
-    });
-    console.log("Map object created");
-
-    // 公共交通機関レイヤーの追加
-    let transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
-    console.log("Transit layer added to map");
-
-    // インフォウィンドウの内容
-    let contentString = `<div><strong>${"<%= @shop.name %>"}</strong><br>${"<%= @shop.address %>"}</div>`;
-    console.log("Content String:", contentString);
-
-    // インフォウィンドウの作成
-    let infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-    console.log("InfoWindow object created");
-
-    // マーカーの作成
-    let marker = new google.maps.Marker({
-      position: mapPosition,
-      map: map,
-      title: "<%= @shop.name %>"
-    });
-    console.log("Marker object created");
-
-    // マーカークリック時にインフォウィンドウを表示
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-    console.log("Marker click listener added");
+  if (!mapPosition.lat || !mapPosition.lng) {
+    console.error("Invalid latitude or longitude value");
+    return;
   }
 
-  window.initMapForDetailPage = initMapForDetailPage;
-</script>
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: mapPosition,
+    mapTypeControl: false,
+    fullscreenControl: true,
+    streetViewControl: true,
+  });
 
+  let transitLayer = new google.maps.TransitLayer();
+  transitLayer.setMap(map);
+
+  let contentString = `<div><strong>${"<%= @shop.name %>"}</strong><br>${"<%= @shop.address %>"}</div>`;
+
+  let infowindow = new google.maps.InfoWindow({
+    content: contentString,
+  });
+
+  let marker = new google.maps.Marker({
+    position: mapPosition,
+    map: map,
+    title: "<%= @shop.name %>"
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+
+window.initMapForDetailPage = initMapForDetailPage;
+</script>
