@@ -7,4 +7,5 @@ pin "@hotwired/turbo-rails", to: "https://cdn.jsdelivr.net/npm/@hotwired/turbo@7
 pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.umd.js"
 
 # 全てのコントローラーを自動的にピンする
-pin_all_from "app/javascript/controllers", under: "controllers"
+pin "controllers/application", to: "controllers/application.js"
+pin "controllers/hello_controller", to: "controllers/hello_controller.js"
