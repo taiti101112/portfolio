@@ -5,9 +5,10 @@ pin "@rails/ujs", to: "rails-ujs.js"
 pin "@hotwired/turbo-rails", to: "https://cdn.jsdelivr.net/npm/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js"
 
 if Rails.env.production?
-  pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.esm.js"
+  pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.js"
 else
   pin "@hotwired/stimulus", to: "https://cdn.jsdelivr.net/npm/@hotwired/stimulus@3.2.1/dist/stimulus.umd.js"
 end
+
 
 pin_all_from "app/javascript/controllers", under: "controllers"
