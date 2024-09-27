@@ -1,5 +1,5 @@
 import { Turbo } from "@hotwired/turbo-rails";
-import Rails from "@rails/ujs";  // ここでローカルのUJSをインポート
+import Rails from "@rails/ujs";  // ローカルのUJSをインポート
 
 Rails.start();
 
