@@ -1,6 +1,7 @@
 import { Turbo } from "@hotwired/turbo-rails";
-import Rails from "@rails/ujs";  // ローカルのUJSをインポート
 
+// @rails/ujs をローカルからインポート
+import * as Rails from "rails-ujs";
 Rails.start();
 
 // Stimulus コントローラーのインポートと登録
