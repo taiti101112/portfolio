@@ -1,7 +1,7 @@
 import { Turbo } from "@hotwired/turbo-rails";
 
-// @rails/ujs をローカルからインポート
-import * as Rails from "rails-ujs";
+// rails-ujsを相対パスで読み込む
+import Rails from "../node_modules/@rails/ujs";
 Rails.start();
 
 // Stimulus コントローラーのインポートと登録
