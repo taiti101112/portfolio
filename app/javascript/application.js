@@ -1,6 +1,2 @@
-// Stimulus コントローラーのインポートと登録
-import { application } from "controllers/application";
-import HelloController from "controllers/hello_controller";
-application.register("hello", HelloController);
-
-// Importmapで管理されるので、ここでは @hotwired/turbo-rails や @rails/ujs を直接インポートしません
+// application.js 内の `import` 文を削除
+// Stimulus コントローラーのインポートは Importmap で自動的に行われる

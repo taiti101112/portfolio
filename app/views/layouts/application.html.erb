@@ -20,10 +20,10 @@
   <!-- Importmap for JavaScript -->
   <%= javascript_importmap_tags %>
 
-  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+  <!-- この行は削除する -->
+  <!-- <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %> -->
 
 </head>
-
 <body class="bg-light d-flex flex-column min-vh-100">
   <!-- Header -->
   <%= render 'layouts/header' %>
