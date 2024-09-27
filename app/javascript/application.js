@@ -1,13 +1,11 @@
-// app/javascript/application.js
-
 import { Turbo } from "@hotwired/turbo-rails";
-import "@rails/ujs";
+import Rails from "@rails/ujs";  // ここでローカルのUJSをインポート
 
+Rails.start();
 
-// コントローラーの明示的なインポートと登録
+// Stimulus コントローラーのインポートと登録
 import { application } from "controllers/application";  
 import HelloController from "controllers/hello_controller";
-application.register("hello", HelloController);  // HelloController を登録
+application.register("hello", HelloController);
 
-Turbo.session.drive = true; // Turboの動作を有効にします
-Rails.start();
+Turbo.session.drive = true;
