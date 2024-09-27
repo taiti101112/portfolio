@@ -31,16 +31,10 @@
         <%= f.search_field :name_cont, class: "form-control form-control-dark form-control-sm", placeholder: "ショップ名で検索", aria: { label: "検索" } %>
         <%= f.submit "検索", class: "btn btn-outline-light btn-sm ms-2" %>
       <% end %>
-
-      <div class="text-end">
+      <div class="text-end d-flex justify-content-end align-items-center">
         <% if user_signed_in? %>
           <%= link_to "ショップ一覧", shops_path, class: "btn btn-outline-light me-2" %>
-          <!-- Navigation with Dropdown 
-          <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-light me-2", method: :delete, data: { turbo_method: :delete } %>
-          <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-light me-2", data: { confirm: '本当にログアウトしますか？' } %>
-          -->
           <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-light me-2", data: { turbo: false, confirm: '本当にログアウトしますか？' } %>
-
           <%= link_to "マイページ", "/users/#{current_user.id}", class: "btn btn-outline-light me-2" %>
         <% else %>
           <%= link_to "ショップ一覧", shops_path, class: "btn btn-outline-light me-2" %>
