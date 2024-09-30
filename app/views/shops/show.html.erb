@@ -17,41 +17,44 @@
 </div>
 
 <script>
-function initMapForDetailPage() {
-  let mapPosition = {lat: <%= @shop.latitude || 35.681236 %>, lng: <%= @shop.longitude || 139.767125 %> };
+  function initMapForDetailPage() {
+    let mapPosition = {lat: <%= @shop.latitude || 35.681236 %>, lng: <%= @shop.longitude || 139.767125 %> };
 
-  if (!mapPosition.lat || !mapPosition.lng) {
-    console.error("Invalid latitude or longitude value");
-    return;
+    if (!mapPosition.lat || !mapPosition.lng) {
+      console.error("Invalid latitude or longitude value");
+      return;
+    }
+
+    let map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: mapPosition,
+      mapTypeControl: false,
+      fullscreenControl: true,
+      streetViewControl: true,
+    });
+
+    let transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+    let contentString = `<div><strong>${"<%= @shop.name %>"}</strong><br>${"<%= @shop.address %>"}</div>`;
+
+    let infowindow = new google.maps.InfoWindow({
+      content: contentString,
+    });
+
+    let marker = new google.maps.Marker({
+      position: mapPosition,
+      map: map,
+      title: "<%= @shop.name %>"
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
   }
 
-  let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: mapPosition,
-    mapTypeControl: false,
-    fullscreenControl: true,
-    streetViewControl: true,
-  });
-
-  let transitLayer = new google.maps.TransitLayer();
-  transitLayer.setMap(map);
-
-  let contentString = `<div><strong>${"<%= @shop.name %>"}</strong><br>${"<%= @shop.address %>"}</div>`;
-
-  let infowindow = new google.maps.InfoWindow({
-    content: contentString,
-  });
-
-  let marker = new google.maps.Marker({
-    position: mapPosition,
-    map: map,
-    title: "<%= @shop.name %>"
-  });
-
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
-}
-
-window.initMapForDetailPage = initMapForDetailPage;
+  window.initMapForDetailPage = initMapForDetailPage;
 </script>
+
+<!-- Google Maps APIのスクリプト呼び出し -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMapForDetailPage" async defer></script>
