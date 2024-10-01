@@ -35,7 +35,11 @@
             <i class="bi bi-globe text-primary me-2"></i>公式HP
           </th>
           <td>
-            <%= link_to shop.official_hp, shop.official_hp, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" if shop.official_hp.present? %>
+            <% if shop.official_hp.present? %>
+              <%= link_to '公式HP', shop.official_hp, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
+            <% else %>
+              
+            <% end %>
           </td>
         </tr>
         <tr>
@@ -43,7 +47,11 @@
             <i class="bi bi-twitter text-info me-2"></i>Twitter
           </th>
           <td>
-            <%= link_to shop.twitter, shop.twitter, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" if shop.twitter.present? %>
+            <% if shop.twitter.present? %>
+              <%= link_to 'Twitter', shop.twitter, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
+            <% else %>
+              
+            <% end %>
           </td>
         </tr>
         <tr>
@@ -51,7 +59,11 @@
             <i class="bi bi-instagram text-danger me-2"></i>Instagram
           </th>
           <td>
-            <%= link_to shop.instagram, shop.instagram, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" if shop.instagram.present? %>
+            <% if shop.instagram.present? %>
+              <%= link_to 'Instagram', shop.instagram, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
+            <% else %>
+              
+            <% end %>
           </td>
         </tr>
       </tbody>
@@ -65,7 +77,6 @@
         <%= link_to "編集", edit_admin_shop_path(shop), class: "btn btn-outline-primary me-2" %>
         <%= link_to "戻る", shops_path, class: "btn btn-outline-secondary me-2" %>
         <%= button_to "削除", admin_shop_path(shop), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger" %>
-      
     </div>
   <% end %>
 </div>
