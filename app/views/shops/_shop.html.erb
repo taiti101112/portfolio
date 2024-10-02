@@ -3,76 +3,79 @@
     <div class="card-body">
       <h5 class="card-title text-primary mb-3"><i class="bi bi-shop me-2"></i><%= link_to shop.name, shop_path(shop) %></h5>
 
-      <div class="table-responsive">
-        <table class="table table-borderless mb-0">
-          <tbody>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-geo-alt-fill text-danger me-2"></i>住所
-              </th>
-              <td><%= shop.address %></td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-telephone-fill text-success me-2"></i>電話番号
-              </th>
-              <td><%= shop.phone_number %></td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-people-fill text-info me-2"></i>デュエルスペース
-              </th>
-              <td><%= shop.duel_space_available %></td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-clock-fill text-warning me-2"></i>営業時間
-              </th>
-              <td>
-                <%= shop.opening_hours.present? ? shop.opening_hours.gsub("\n", "<br>").html_safe : "情報がありません" %>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-globe text-primary me-2"></i>公式HP
-              </th>
-              <td>
-                <% if shop.official_hp.present? %>
-                  <%= link_to '公式HP', shop.official_hp, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
-                <% else %>
-                  
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-twitter text-info me-2"></i>Twitter
-              </th>
-              <td>
-                <% if shop.twitter.present? %>
-                  <%= link_to 'Twitter', shop.twitter, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
-                <% else %>
-                  
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="text-nowrap">
-                <i class="bi bi-instagram text-danger me-2"></i>Instagram
-              </th>
-              <td>
-                <% if shop.instagram.present? %>
-                  <%= link_to 'Instagram', shop.instagram, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
-                <% else %>
-                  
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <!-- 以下の詳細情報をshop-detailsクラスで囲む -->
+      <div class="shop-details">
+        <div class="table-responsive">
+          <table class="table table-borderless mb-0">
+            <tbody>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-geo-alt-fill text-danger me-2"></i>住所
+                </th>
+                <td><%= shop.address %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-telephone-fill text-success me-2"></i>電話番号
+                </th>
+                <td><%= shop.phone_number %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-people-fill text-info me-2"></i>デュエルスペース
+                </th>
+                <td><%= shop.duel_space_available %></td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-clock-fill text-warning me-2"></i>営業時間
+                </th>
+                <td>
+                  <%= shop.opening_hours.present? ? shop.opening_hours.gsub("\n", "<br>").html_safe : "情報がありません" %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-globe text-primary me-2"></i>公式HP
+                </th>
+                <td>
+                  <% if shop.official_hp.present? %>
+                    <%= link_to '公式HP', shop.official_hp, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
+                  <% else %>
+                    
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-twitter text-info me-2"></i>Twitter
+                </th>
+                <td>
+                  <% if shop.twitter.present? %>
+                    <%= link_to 'Twitter', shop.twitter, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
+                  <% else %>
+                    
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="text-nowrap">
+                  <i class="bi bi-instagram text-danger me-2"></i>Instagram
+                </th>
+                <td>
+                  <% if shop.instagram.present? %>
+                    <%= link_to 'Instagram', shop.instagram, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
+                  <% else %>
+                    
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <%= render 'tags/tag_list', tag_list: shop.tag_list %>
+        <%= render 'tags/tag_list', tag_list: shop.tag_list %>
+      </div>
     </div>
 
     <% if @is_admin %>
