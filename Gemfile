@@ -76,6 +76,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'sqlite3' #do ~ end内部に追加。他のgemは残してください。
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :development do
