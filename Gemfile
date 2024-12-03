@@ -77,6 +77,8 @@ group :development, :test do
   gem 'sqlite3' #do ~ end内部に追加。他のgemは残してください。
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
