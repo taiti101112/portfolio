@@ -28,12 +28,7 @@ Rails.application.routes.draw do
 
   # 管理画面用のルーティング
   namespace :admin do
-    resources :shops do
-      member do
-        get 'edit_hours'
-        patch 'update_hours'
-      end
-    end
+    resources :shops
   end
 
   # ルートパス

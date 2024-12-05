@@ -63,7 +63,9 @@ gem 'sassc'
 
 gem 'importmap-rails'
 
+gem 'rspec-json_expectations'
 
+gem 'rails-controller-testing'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
