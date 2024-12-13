@@ -14,15 +14,14 @@
   <!-- Custom Stylesheet -->
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
 
-
   <!-- Gon gem for Rails -->
   <%= include_gon %>
 
   <!-- Importmap for JavaScript -->
   <%= javascript_importmap_tags %>
 
-  <!-- この行は削除する -->
-  <!-- <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %> -->
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
 
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">

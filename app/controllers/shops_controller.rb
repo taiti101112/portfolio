@@ -18,6 +18,10 @@ class ShopsController < ApplicationController
     if params[:open_now] == '1'
       @shops = @shops.open_now
     end
+
+    if params[:latitude].present? && params[:longitude].present?
+      @shops = @shops.near(params[:latitude].to_f, params[:longitude].to_f)
+    end
   
     @shops = @shops.page(params[:page]).per(5)
     gon.shops = @shops
