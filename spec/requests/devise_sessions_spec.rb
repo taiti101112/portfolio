@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Devise Authentication", type: :request do
-  let!(:user) { create(:user, password: "password") }
+  let!(:user) { create(:user, name: "test_user", email: "test@example.com", password: "password", password_confirmation: "password") }
 
   describe "POST /users/sign_in" do
     it "logs in the user" do
-      post user_session_path, params: { user: { email: user.email, password: "password" } }
+      post user_session_path, params: { user: { email: user.email, name: user.name, password: "password" } }
       expect(response).to redirect_to(user_path(user))
     end
   end
@@ -21,3 +21,4 @@ RSpec.describe "Devise Authentication", type: :request do
     end
   end
 end
+
