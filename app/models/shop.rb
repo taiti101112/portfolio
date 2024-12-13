@@ -11,6 +11,14 @@ class Shop < ApplicationRecord
 
   acts_as_taggable
 
+  scope :near, ->(latitude, longitude) {
+    select("#{table_name}.*, " \
+           "(6371 * acos(cos(radians(#{latitude})) * cos(radians(latitude)) * " \
+           "cos(radians(longitude) - radians(#{longitude})) + " \
+           "sin(radians(#{latitude})) * sin(radians(latitude)))) AS distance")
+      .order("distance ASC")
+  }
+
   def self.ransackable_attributes(auth_object = nil)
     %w[name]
   end

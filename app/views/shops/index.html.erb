@@ -1,13 +1,11 @@
 <div class="container mt-4">
   <h1 class="mb-4">ショップ一覧</h1>
 
-  <!-- app/views/layouts/application.html.erb -->
-
-
   <% if @is_admin %>
     <%= link_to "新規作成", new_admin_shop_path, class: "btn btn-primary mb-4 shadow" %>
   <% end %>
 
+  <!-- 営業中のみ表示 -->
   <%= form_with url: shops_path, method: :get, local: true, class: "mb-4" do |form| %>
     <div class="form-check form-switch">
       <%= form.check_box :open_now, { class: "form-check-input", checked: params[:open_now] == '1', onchange: 'this.form.submit();' }, '1', '0' %>
@@ -15,11 +13,31 @@
     </div>
   <% end %>
 
+  <!-- 現在地でショップを検索 -->
+  <%= form_with url: shops_path, method: :get, local: true, id: "location-form", class: "mb-4" do |form| %>
+    <div class="form-check form-switch">
+      <%= form.check_box :use_current_location, 
+            { class: "form-check-input", checked: params[:use_current_location] == '1', onchange: 'handleLocationSwitch(this)', id: "use-current-location" }, 
+            '1', 
+            '0' %>
+      <%= form.label :use_current_location, "現在地でショップを検索", class: "form-check-label" %>
+
+      <!-- 隠しフィールド -->
+      <%= form.hidden_field :latitude, id: "latitude", value: params[:latitude] %>
+      <%= form.hidden_field :longitude, id: "longitude", value: params[:longitude] %>
+    </div>
+  <% end %>
+
+  <!-- ショップ情報 -->
   <div id="shops" class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
-    <% @shops.each do |shop| %>
-      <div class="col">
-        <%= render partial: "shop", locals: { shop: shop, is_admin: @is_admin } %>
-      </div>
+    <% if @shops.present? %>
+      <% @shops.each do |shop| %>
+        <div class="col">
+          <%= render partial: "shop", locals: { shop: shop, is_admin: @is_admin } %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>条件に一致するショップが見つかりませんでした。</p>
     <% end %>
   </div>
 
@@ -29,3 +47,44 @@
     </div>
   <% end %>
 </div>
+
+<!-- JavaScript -->
+<script>
+  document.addEventListener('turbo:load', () => {
+    console.log('Turbo: JavaScript is loaded');
+
+    // スイッチが切り替えられた際の処理
+    window.handleLocationSwitch = (checkbox) => {
+      if (checkbox.checked) {
+        console.log('Switch turned on: Getting current location...');
+        
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            console.log('Current position:', position.coords);
+
+            // 緯度・経度を隠しフィールドに設定
+            document.querySelector('#latitude').value = position.coords.latitude;
+            document.querySelector('#longitude').value = position.coords.longitude;
+
+            // フォームを送信
+            checkbox.form.submit();
+          }, (error) => {
+            console.error('Error getting location:', error);
+            alert('現在地を取得できませんでした。位置情報サービスを確認してください。');
+            checkbox.checked = false; // エラー時にスイッチを戻す
+          });
+        } else {
+          console.error('Geolocation is not supported');
+          alert('現在地取得機能がサポートされていません。');
+          checkbox.checked = false; // 非サポート時にスイッチを戻す
+        }
+      } else {
+        console.log('Switch turned off: Form will be submitted without location.');
+        // 緯度・経度を空にしてフォームを送信
+        document.querySelector('#latitude').value = '';
+        document.querySelector('#longitude').value = '';
+        checkbox.form.submit();
+      }
+    };
+  });
+</script>
