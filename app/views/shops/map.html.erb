@@ -1,5 +1,40 @@
 <div class="container py-4">
   <h1 class="text-center mb-4 text-primary">ショップマップ</h1>
+  <div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h5 class="card-title">検索条件</h5>
+    <%= form_with url: map_shops_path, method: :get, local: true, class: "mb-4" do |form| %>
+      <div class="row align-items-center">
+        <!-- ショップ名検索 -->
+        <div class="col-md-4">
+          <%= form.label 'q[name_cont]', "ショップ名を入力", class: "form-label" %>
+          <%= form.text_field 'q[name_cont]', value: params.dig(:q, :name_cont), class: "form-control" %>
+        </div>
+
+        <!-- タグ検索 -->
+        <div class="col-md-4">
+          <%= form.label :tag_name, "取り扱いタイトルを選択", class: "form-label" %>
+          <%= form.select :tag_name, options_for_select(@tags.map { |tag| [tag.name, tag.name] }, params[:tag_name]), { include_blank: "選択してください" }, class: "form-control" %>
+        </div>
+
+        <!-- 営業中のみ表示 -->
+        <div class="col-md-4">
+          <div class="form-check form-switch mt-4">
+            <%= form.check_box :open_now, { class: "form-check-input", checked: params[:open_now] == '1' }, '1', '0' %>
+            <%= form.label :open_now, "営業中のショップのみ表示", class: "form-check-label" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <%= form.submit "検索", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
   <div id="map" style="height: 500px;" class="rounded shadow-sm border"></div>
 </div>
 
@@ -8,7 +43,7 @@
     // マップの初期化
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
-      center: { lat: 35.6984, lng: 139.7730 } // 秋葉原駅を初期中心地に設定
+      center: { lat: 35.6984, lng: 139.7730 } // 秋葉原駅がマップの中心になるように設定
     });
 
     var markers = [];

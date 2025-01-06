@@ -45,21 +45,31 @@ class ShopsController < ApplicationController
   end
 
   def map
+    # 検索条件を設定
     @q = Shop.ransack(params[:q])
-    if params[:q].present?
+  
+    # 検索条件がある場合は検索条件に当てはまるショップを取得し、ない場合は全てのショップを取得
+    if params[:q].present? && params[:q][:name_cont].present?
       @shops = @q.result(distinct: true).includes(:business_hours)
     else
+      # 検索条件がない場合は全ショップを取得
       @shops = Shop.includes(:business_hours).all
     end
   
-    if params[:tag_name]
+    # タグに当てはまるショップを取得
+    if params[:tag_name].present?
       @shops = @shops.tagged_with(params[:tag_name])
     end
   
+    # 営業中のショップを取得
     if params[:open_now] == '1'
-      @shops = @shops.select { |shop| shop.open_now? }
+      @shops = @shops.open_now
     end
-    
+
+    # 五十音順に並び替え
+    @shops = @shops.order(:name)
+  
+    # JavaScriptに情報を渡す
     gon.shops = @shops
   end
 
