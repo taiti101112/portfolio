@@ -11,6 +11,9 @@
         <li class="nav-item">
           <%= link_to 'マップから探す', map_shops_path, class: 'nav-link px-2 text-light' %>
         </li>
+        <li class="nav-item">
+          <%= link_to 'ショップ一覧から探す', shops_path, class: 'nav-link px-2 text-light' %>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-light px-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             取り扱いタイトルから探す
@@ -33,11 +36,9 @@
       <% end %>
       <div class="text-end d-flex justify-content-end align-items-center">
         <% if user_signed_in? %>
-          <%= link_to "ショップ一覧", shops_path, class: "btn btn-outline-light me-2" %>
-          <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-light me-2", data: { turbo: false, confirm: '本当にログアウトしますか？' } %>
           <%= link_to "マイページ", "/users/#{current_user.id}", class: "btn btn-outline-light me-2" %>
+          <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-light me-2", data: { turbo: false, confirm: '本当にログアウトしますか？' } %>
         <% else %>
-          <%= link_to "ショップ一覧", shops_path, class: "btn btn-outline-light me-2" %>
           <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light me-2" %>
           <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-light me-2" %>
         <% end %>
