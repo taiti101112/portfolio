@@ -8,7 +8,7 @@
     // マップの初期化
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
-      center: { lat: 35.6895, lng: 139.6917 } // 東京を初期中心地に設定
+      center: { lat: 35.6984, lng: 139.7730 } // 秋葉原駅を初期中心地に設定
     });
 
     var markers = [];
@@ -66,8 +66,6 @@
           userInfowindow.open(map, userMarker);
         });
 
-        // マップの中心を現在位置に移動
-        map.setCenter(userPosition);
       }, function(error) {
         console.error("Geolocation error:", error);
         alert("現在位置を取得できませんでした。");
@@ -79,6 +77,10 @@
 
   window.initMapForMapPage = initMapForMapPage;
 </script>
+
+<!-- Google Maps APIの読み込み（callbackをinitMapForMapPageに変更） -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMapForMapPage" async defer></script>
+
 
 <!-- Google Maps APIの読み込み（callbackをinitMapForMapPageに変更） -->
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMapForMapPage" async defer></script>
