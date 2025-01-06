@@ -4,32 +4,40 @@ class ShopsController < ApplicationController
   before_action :set_is_admin, only: [:index, :show, :favorites]
 
   def index
+    # 検索条件を設定
     @q = Shop.ransack(params[:q])
-    if params[:q].present?
+  
+    # 検索条件がある場合は検索条件に当てはまるショップを取得し、ない場合は全てのショップを取得
+    if params[:q].present? && params[:q][:name_cont].present?
       @shops = @q.result(distinct: true).includes(:business_hours)
     else
+      # 検索条件がない場合は全ショップを取得
       @shops = Shop.includes(:business_hours).all
     end
   
-    if params[:tag_name]
+    # タグに当てはまるショップを取得
+    if params[:tag_name].present?
       @shops = @shops.tagged_with(params[:tag_name])
     end
   
+    # 営業中のショップを取得
     if params[:open_now] == '1'
       @shops = @shops.open_now
     end
 
-    if params[:latitude].present? && params[:longitude].present?
-      @shops = @shops.near(params[:latitude].to_f, params[:longitude].to_f)
-    end
+    # 五十音順に並び替え
+    @shops = @shops.order(:name)
   
+    # ページネーション
     @shops = @shops.page(params[:page]).per(5)
+  
+    # JavaScriptに情報を渡す
     gon.shops = @shops
   end
+  
 
   def show
     @shop = Shop.find(params[:id])
-    # @tags = @shop.tag_counts_on(:tags) # 個別のショップのタグを別の変数に保持
   end
 
   def favorites
