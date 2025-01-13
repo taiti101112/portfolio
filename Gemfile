@@ -6,6 +6,8 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8", ">= 7.0.8.1"
 
+gem 'rack-rewrite'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -66,6 +68,7 @@ gem 'importmap-rails'
 gem 'rspec-json_expectations', require: false
 
 gem 'rails-controller-testing', require: false
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
