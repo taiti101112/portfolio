@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
     current_user.favorite(@shop)
 
     respond_to do |format|
-      format.html { redirect_to shop_path(@shop), notice: "お気に入りに追加しました。" }
+      format.html { redirect_to shops_path, notice: "お気に入りに追加しました。" }
       format.json { render json: { success: true, favorite_id: @shop.id }, status: :created }
     end
   end
@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
     current_user.unfavorite(@shop)
 
     respond_to do |format|
-      format.html { redirect_to shop_path(@shop), notice: "お気に入りを削除しました。" }
+      format.html { redirect_to shops_path, notice: "お気に入りを削除しました。" }
       format.json { render json: { success: true }, status: :ok }
     end
   end
