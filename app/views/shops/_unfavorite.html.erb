@@ -1,4 +1,3 @@
-
 <%= button_to favorite_path(current_user.favorites.find_by(shop_id: shop.id)), id: "unfavorite-button-for-shop-#{shop.id}", method: :delete do %>
-  <i class="bi bi-star-fill"></i>
+  <i class="bi bi-star-fill" style="color: blue; font-size: 1em;"></i>
 <% end %>

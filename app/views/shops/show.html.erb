@@ -50,42 +50,7 @@ function initMapForDetailPage() {
   shopMarker.addListener('click', function() {
     shopInfowindow.open(map, shopMarker);
   });
-
-  // 現在位置を取得
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let userPosition = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-
-      // 現在位置のマーカー
-      let userMarker = new google.maps.Marker({
-        position: userPosition,
-        map: map,
-        icon: {
-          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png", // 青いアイコン
-        },
-        title: "現在位置",
-      });
-
-      let userInfowindow = new google.maps.InfoWindow({
-        content: "<div>現在位置</div>",
-      });
-
-      userMarker.addListener('click', function() {
-        userInfowindow.open(map, userMarker);
-      });
-
-    }, function(error) {
-      console.error("Geolocation error:", error);
-      alert("現在位置を取得できませんでした。");
-    });
-  } else {
-    alert("Geolocationはこのブラウザでサポートされていません。");
-  }
 }
-
 </script>
 
 <!-- Google Maps APIのスクリプト呼び出し -->
