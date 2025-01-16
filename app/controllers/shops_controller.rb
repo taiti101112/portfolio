@@ -29,7 +29,7 @@ class ShopsController < ApplicationController
     @shops = @shops.order(:name)
   
     # ページネーション
-    @shops = @shops.page(params[:page]).per(5)
+    @shops = @shops.page(params[:page]).per(12)
   
     # JavaScriptに情報を渡す
     gon.shops = @shops
