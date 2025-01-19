@@ -69,7 +69,7 @@ gem 'rspec-json_expectations', require: false
 
 gem 'rails-controller-testing', require: false
 
-
+gem 'rails-i18n'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

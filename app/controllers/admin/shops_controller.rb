@@ -38,23 +38,28 @@ module Admin
       @shop = Shop.new(shop_params)
       @shop.user = current_user
       if @shop.save
-        redirect_to [@shop], notice: 'Shop and business hours were successfully created.'
+        redirect_to [@shop], notice: t('flash.actions.shop.create.success')
       else
+        flash.now[:error] = t('flash.actions.shop.create.failure')
         render :new
       end
     end
 
     def update
       if @shop.update(shop_params)
-        redirect_to [@shop], notice: 'ショップの更新が完了しました'
+        redirect_to [@shop], notice: t('flash.actions.shop.update.success')
       else
+        flash.now[:error] = t('flash.actions.shop.update.failure')
         render :edit
       end
     end
 
     def destroy
-      @shop.destroy
-      redirect_to shops_url, notice: 'ショップの削除が完了しました'
+      if @shop.destroy
+        redirect_to shops_url, notice: t('flash.actions.shop.destroy.success')
+      else
+        redirect_to shops_url, alert: t('flash.actions.shop.destroy.failure')
+      end
     end
 
     private

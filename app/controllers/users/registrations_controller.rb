@@ -10,9 +10,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+      if resource.persisted?
+        flash[:notice] = I18n.t('devise.registrations.signed_up') 
+      else
+        flash[:alert] = I18n.t('devise.registrations.signed_up_failure') 
+      end
+    end
+  end
+  
 
   # GET /resource/edit
   # def edit

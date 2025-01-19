@@ -1,0 +1,88 @@
+ja:
+  devise:
+    registrations:
+      signed_up: "ユーザー登録が完了しました。"
+      signed_up_failure: "ユーザー登録に失敗しました。"
+      updated: "アカウント情報を更新しました。"
+      update_needs_confirmation: "アカウント情報が更新されました。確認メールをご確認ください。"
+      destroyed: "アカウントを削除しました。"
+      not_updated: "アカウント情報の更新に失敗しました。"
+
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      invalid: "ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。"
+
+    passwords:
+      send_instructions: "パスワードリセットの指示を送信しました。"
+      updated: "パスワードが更新されました。"
+      updated_not_active: "パスワードが更新されましたが、アカウントは有効化されていません。"
+
+    confirmations:
+      send_instructions: "確認メールを送信しました。"
+      confirmed: "メールアドレスの確認が完了しました。"
+
+    failure:
+      user:
+        invalid: "ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。"
+      invalid: "ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。"
+
+  flash:
+    actions:
+      shop:
+        create:
+          success: "ショップを登録しました。"
+          failure: "ショップの作成に失敗しました。"
+        update:
+          success: "ショップ情報を更新しました。"
+          failure: "ショップ情報の更新に失敗しました。"
+        destroy:
+          success: "ショップを削除しました。"
+          failure: "ショップの削除に失敗しました。"
+      favorite:
+        create:
+          success: "お気に入りに追加しました。"
+          failure: "お気に入りの追加に失敗しました。"
+        destroy:
+          success: "お気に入りを削除しました。"
+          failure: "お気に入りの削除に失敗しました。"
+
+  errors:
+    messages:
+      not_saved: "%{resource}を保存できませんでした。"
+      record_invalid: "入力内容にエラーがあります。"
+      not_found: "リソースが見つかりませんでした。"
+
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+        current_password: "現在のパスワード"
+        name: "名前"
+      shop:
+        name: "ショップ名"
+        address: "住所"
+        phone_number: "電話番号"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください。"
+              invalid: "有効なメールアドレスを入力してください。"
+            password:
+              blank: "パスワードを入力してください。"
+              too_short: "パスワードは%{count}文字以上で入力してください。"
+            current_password:
+              blank: "現在のパスワードを入力してください。"
+              incorrect: "現在のパスワードが正しくありません。"
+        shop:
+          attributes:
+            name:
+              blank: "ショップ名を入力してください。"
+            address:
+              blank: "住所を入力してください。"
+            phone_number:
+              blank: "電話番号を入力してください。"
