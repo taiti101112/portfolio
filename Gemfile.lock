@@ -227,6 +227,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.10)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.8.1)
       actionpack (= 7.0.8.1)
       activesupport (= 7.0.8.1)
@@ -339,6 +342,7 @@ DEPENDENCIES
   rack-rewrite
   rails (~> 7.0.8, >= 7.0.8.1)
   rails-controller-testing
+  rails-i18n
   ransack
   rspec-json_expectations
   rspec-rails (~> 6.0)
