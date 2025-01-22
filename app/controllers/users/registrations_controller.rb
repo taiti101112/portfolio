@@ -19,6 +19,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
+
+  def update
+    super do |resource|
+      if resource.errors.any?
+        flash.now[:alert] = I18n.t('devise.registrations.not_updated')
+      else
+        flash[:notice] = I18n.t('devise.registrations.updated')
+      end
+    end
+  end
   
 
   # GET /resource/edit
