@@ -3,17 +3,6 @@
     <h2 class="mb-3">新規登録</h2>
     
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "signup-form shadow p-4 rounded" }) do |f| %>
-      
-      <% if resource.errors.any? %>
-        <div id="error_explanation" class="alert alert-danger">
-          <h5><%= pluralize(resource.errors.count, "つのエラー") %>があります。</h2>
-          <ul>
-            <% resource.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
 
       <div class="mb-3">
         <%= f.label :name, "名前", class: "form-label visually-hidden" %>

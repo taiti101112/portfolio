@@ -1,14 +1,4 @@
 <%= form_with(model: @shop_business_hour_form, url: admin_shop_path(@shop_business_hour_form.shop), local: true, method: :patch, html: { class: 'needs-validation', novalidate: true }) do |form| %>
-  <% if @shop_business_hour_form.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <h4 class="alert-heading"><%= pluralize(@shop_business_hour_form.errors.count, "error") %> prohibited this shop from being saved:</h4>
-      <ul>
-        <% @shop_business_hour_form.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="mb-3">
     <%= form.label :shop_name, "ショップ名", class: "form-label" %>

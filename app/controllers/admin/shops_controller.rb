@@ -40,8 +40,8 @@ module Admin
       if @shop.save
         redirect_to [@shop], notice: t('flash.actions.shop.create.success')
       else
-        flash.now[:error] = t('flash.actions.shop.create.failure')
-        render :new
+        flash.now[:alert] = t('flash.actions.shop.create.failure')  # flash.now[:error] から flash.now[:alert] に修正
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -49,8 +49,8 @@ module Admin
       if @shop.update(shop_params)
         redirect_to [@shop], notice: t('flash.actions.shop.update.success')
       else
-        flash.now[:error] = t('flash.actions.shop.update.failure')
-        render :edit
+        flash.now[:alert] = t('flash.actions.shop.update.failure')  # flash.now[:error] から flash.now[:alert] に修正
+        render :edit, status: :unprocessable_entity
       end
     end
 
