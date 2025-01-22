@@ -72,6 +72,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    bigdecimal (3.1.9)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
@@ -114,6 +115,12 @@ GEM
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
+    faraday (2.12.2)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
     ffi (1.17.0)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-x86_64-linux-gnu)
@@ -127,6 +134,7 @@ GEM
       i18n (>= 0.7)
       multi_json
       request_store (>= 1.0)
+    hashie (5.0.0)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -140,6 +148,9 @@ GEM
     jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.9.1)
+    jwt (2.10.1)
+      base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -152,6 +163,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    logger (1.6.5)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -168,6 +180,10 @@ GEM
     minitest (5.22.3)
     msgpack (1.7.2)
     multi_json (1.15.0)
+    multi_xml (0.7.1)
+      bigdecimal (~> 3.1)
+    net-http (0.6.0)
+      uri
     net-imap (0.4.10)
       date
       net-protocol
@@ -185,6 +201,30 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
+    oauth2 (2.0.9)
+      faraday (>= 0.17.3, < 3.0)
+      jwt (>= 1.0, < 3.0)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    omniauth (2.1.2)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-github (2.0.1)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.8)
+    omniauth-google-oauth2 (0.8.0)
+      jwt (>= 2.0)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.6)
+    omniauth-oauth2 (1.8.0)
+      oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.2)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     orm_adapter (0.5.0)
     pg (1.5.6)
     pry (0.14.2)
@@ -199,6 +239,9 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.9)
+    rack-protection (3.2.0)
+      base64 (>= 0.1.0)
+      rack (~> 2.2, >= 2.2.4)
     rack-rewrite (1.5.1)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -279,6 +322,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -301,6 +347,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (1.0.2)
+    version_gem (1.1.4)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -327,7 +375,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
-  devise
+  devise (~> 4.9)
   dotenv-rails
   factory_bot_rails
   faker
@@ -336,6 +384,10 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kaminari
+  omniauth
+  omniauth-github
+  omniauth-google-oauth2
+  omniauth-rails_csrf_protection
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
