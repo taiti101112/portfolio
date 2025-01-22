@@ -51,7 +51,7 @@ gem 'ransack'
 
 gem 'acts-as-taggable-on'
 
-gem 'devise'
+gem 'devise', '~> 4.9'
 
 gem "dotenv-rails"
 
@@ -70,6 +70,14 @@ gem 'rspec-json_expectations', require: false
 gem 'rails-controller-testing', require: false
 
 gem 'rails-i18n'
+
+gem 'omniauth-rails_csrf_protection'
+
+gem 'omniauth-github'
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

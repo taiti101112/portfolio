@@ -1,3 +1,5 @@
+Dotenv::Railtie.load if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
+
 require_relative "boot"
 
 require "rails/all"
