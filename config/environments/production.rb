@@ -40,16 +40,17 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # メール設定
-  config.action_mailer.default_url_options = { host: 'https://tcgplace-9f88c4df2f96.herokuapp.com' } # 本番環境のURL
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'herokuapp.com', # 使用するドメインを指定
-    user_name:            ENV['MAILER_SENDER'],
-    password:             ENV['MAILER_PASSWORD'],
-    authentication:       'plain',
-    enable_starttls_auto: true 
+    address: ENV['SMTP_ADDRESS'],
+    port: ENV['SMTP_PORT'].to_i,
+    domain: ENV['SMTP_DOMAIN'],
+    user_name: ENV['SMTP_USER_NAME'],
+    password: ENV['SMTP_PASSWORD'],
+    authentication: ENV['SMTP_AUTHENTICATION'],
+    enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] == 'true'
   }
 
+  config.action_mailer.default_url_options = { host: 'https://www.tcg-place.com', protocol: 'https' } # 本番環境のURL
+  config.action_mailer.raise_delivery_errors = true
 end
