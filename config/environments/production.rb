@@ -40,6 +40,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # メール設定
+  config.action_mailer.default_url_options = { host: 'www.tcg-place.com', protocol: 'https' }
+  config.action_mailer.default_options = { from: ENV['MAILER_SENDER'] || 'no-reply@tcg-place.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              ENV['SMTP_ADDRESS'],
@@ -50,6 +52,4 @@ Rails.application.configure do
     authentication:       ENV['SMTP_AUTHENTICATION'].to_sym,
     enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'] == 'true'
   }
-  
-  config.action_mailer.default_url_options = { host: 'www.tcg-place.com' }
 end
