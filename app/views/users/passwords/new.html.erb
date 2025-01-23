@@ -1,7 +1,6 @@
 
 <div class="forgot-password-container d-flex justify-content-center align-items-center vh-100">
   <div class="forgot-password-form-wrapper text-center">
-    <h2 class="mb-3">パスワードをお忘れですか？</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "forgot-password-form shadow p-4 rounded" }) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
