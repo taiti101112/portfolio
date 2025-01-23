@@ -4,7 +4,7 @@ ja:
       signed_up: "ユーザー登録が完了しました。"
       signed_up_failure: "ユーザー登録に失敗しました。"
       updated: "アカウント情報を更新しました。"
-      update_needs_confirmation: "アカウント情報が更新されました。確認メールをご確認ください。"
+      update_needs_confirmation: "アカウント情報を更新しました。"
       destroyed: "アカウントを削除しました。"
       not_updated: "アカウント情報の更新に失敗しました。"
 
@@ -14,7 +14,7 @@ ja:
       invalid: "ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。"
 
     passwords:
-      send_instructions: "パスワードリセットの指示を送信しました。"
+      send_instructions: "パスワードリセットメールを入力いただいたメールアドレスに送信しました。"
       updated: "パスワードが更新されました。"
       updated_not_active: "パスワードが更新されましたが、アカウントは有効化されていません。"
 
@@ -23,16 +23,20 @@ ja:
       confirmed: "メールアドレスの確認が完了しました。"
 
     failure:
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
       user:
         invalid: "ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。"
       invalid: "ログインに失敗しました。メールアドレスまたはパスワードが正しくありません。"
+    mailer:
+      reset_password_instructions:
+        subject: "パスワード変更のご案内"
 
   flash:
     actions:
       shop:
         create:
           success: "ショップを登録しました。"
-          failure: "ショップの作成に失敗しました。"
+          failure: "ショップの登録に失敗しました。"
         update:
           success: "ショップ情報を更新しました。"
           failure: "ショップ情報の更新に失敗しました。"
