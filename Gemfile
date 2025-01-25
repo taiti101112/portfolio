@@ -78,6 +78,9 @@ gem 'omniauth-github'
 gem 'omniauth'
 
 gem 'omniauth-google-oauth2'
+
+gem 'bootstrap-kaminari-views'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

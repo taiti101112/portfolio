@@ -46,6 +46,7 @@
                   <% end %>
                 </td>
               </tr>
+
               <tr>
                 <th scope="row" class="text-nowrap">
                   <i class="bi bi-twitter text-info me-2"></i>Twitter
@@ -58,18 +59,9 @@
                   <% end %>
                 </td>
               </tr>
-              <tr>
-                <th scope="row" class="text-nowrap">
-                  <i class="bi bi-instagram text-danger me-2"></i>Instagram
-                </th>
-                <td>
-                  <% if shop.instagram.present? %>
-                    <%= link_to 'Instagram', shop.instagram, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
-                  <% else %>
-                    
-                  <% end %>
-                </td>
-              </tr>
+
+
+
             </tbody>
           </table>
         </div>
