@@ -5,40 +5,40 @@
   <% end %>
 
   <!-- 検索フォーム -->
-  <div class="card shadow-sm mb-4">
-    <div class="card-body">
-      <h5 class="card-title">検索条件</h5>
-      <%= form_with url: shops_path, method: :get, local: true, class: "mb-4" do |form| %>
-        <div class="row align-items-center">
-          <!-- ショップ名検索 -->
-          <div class="col-md-4">
-            <%= form.label 'q[name_cont]', "ショップ名を入力", class: "form-label" %>
-            <%= form.text_field 'q[name_cont]', value: params.dig(:q, :name_cont), class: "form-control" %>
-          </div>
-
-          <!-- タグ検索 -->
-          <div class="col-md-4">
-            <%= form.label :tag_name, "取り扱いタイトルを選択", class: "form-label" %>
-            <%= form.select :tag_name, options_for_select(@tags.map { |tag| [tag.name, tag.name] }, params[:tag_name]), { include_blank: "選択してください" }, class: "form-control" %>
-          </div>
-
-          <!-- 営業中のみ表示 -->
-          <div class="col-md-4">
-            <div class="form-check form-switch mt-4">
-              <%= form.check_box :open_now, { class: "form-check-input", checked: params[:open_now] == '1' }, '1', '0' %>
-              <%= form.label :open_now, "営業中のショップのみ表示", class: "form-check-label" %>
-            </div>
-          </div>
+<!-- 検索フォーム -->
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h5 class="card-title">検索条件</h5>
+    <%= form_with url: shops_path, method: :get, local: true, class: "mb-4" do |form| %>
+      <div class="row align-items-center">
+        <!-- ショップ名検索 -->
+        <div class="col-md-4">
+          <%= form.text_field 'q[name_cont]', value: params.dig(:q, :name_cont), class: "form-control", placeholder: "ショップ名を入力" %>
         </div>
 
-        <div class="row mt-3">
-          <div class="col-md-12">
-            <%= form.submit "検索", class: "btn btn-primary" %>
+        <!-- タグ検索 -->
+        <div class="col-md-4">
+          <%= form.select :tag_name, options_for_select(@tags.map { |tag| [tag.name, tag.name] }, params[:tag_name]), { include_blank: "取り扱いタイトルを選択" }, class: "form-control" %>
+        </div>
+
+        <!-- 営業中のみ表示 -->
+        <div class="col-md-4">
+          <div class="form-check form-switch mt-4">
+            <%= form.check_box :open_now, { class: "form-check-input", checked: params[:open_now] == '1' }, '1', '0' %>
+            <%= form.label :open_now, "営業中のショップのみ表示", class: "form-check-label" %>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <%= form.submit "検索", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
+</div>
+
 
   <!-- ショップ情報 -->
   <div id="shops" class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
@@ -53,9 +53,53 @@
     <% end %>
   </div>
 
-  <% if @shops.present? %>
-    <div class="mt-4">
-      <%= paginate @shops %>
-    </div>
-  <% end %>
+  <div class="container mt-4">
+    <% if @shops.present? %>
+      <div class="mt-4 d-flex justify-content-center">
+        <%= paginate @shops, class: "pagination-custom" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- ページネーションのカスタムスタイル -->
+  <style>
+    .pagination-custom {
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      border-radius: 50px;
+    }
+
+    .pagination-custom .page-item {
+      margin: 0 8px;
+    }
+
+    .pagination-custom .page-link {
+      border: 1px solid #00aaff;
+      border-radius: 50px;
+      color: #00aaff;
+      font-weight: bold;
+      padding: 10px 20px;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .pagination-custom .page-link:hover {
+      background-color: #00aaff;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 170, 255, 0.4);
+    }
+
+    .pagination-custom .active .page-link {
+      background: linear-gradient(135deg, #007bff, #6610f2);
+      color: white;
+      border-color: #6610f2;
+    }
+
+    .pagination-custom .disabled .page-link {
+      color: #bbb;
+      cursor: not-allowed;
+    }
+  </style>
 </div>

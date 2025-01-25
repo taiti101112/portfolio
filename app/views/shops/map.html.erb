@@ -6,14 +6,12 @@
       <div class="row align-items-center">
         <!-- ショップ名検索 -->
         <div class="col-md-4">
-          <%= form.label 'q[name_cont]', "ショップ名を入力", class: "form-label" %>
-          <%= form.text_field 'q[name_cont]', value: params.dig(:q, :name_cont), class: "form-control" %>
+          <%= form.text_field 'q[name_cont]', value: params.dig(:q, :name_cont), class: "form-control", placeholder: "ショップ名を入力" %>
         </div>
 
         <!-- タグ検索 -->
         <div class="col-md-4">
-          <%= form.label :tag_name, "取り扱いタイトルを選択", class: "form-label" %>
-          <%= form.select :tag_name, options_for_select(@tags.map { |tag| [tag.name, tag.name] }, params[:tag_name]), { include_blank: "選択してください" }, class: "form-control" %>
+          <%= form.select :tag_name, options_for_select(@tags.map { |tag| [tag.name, tag.name] }, params[:tag_name]), { include_blank: "取り扱いタイトルを選択" }, class: "form-control" %>
         </div>
 
         <!-- 営業中のみ表示 -->
@@ -41,7 +39,7 @@
   function initMapForMapPage() {
     // マップの初期化
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
+      zoom: 11,
       center: { lat: 35.6984, lng: 139.7730 } // 秋葉原駅がマップの中心になるように設定
     });
 
@@ -59,9 +57,11 @@
 
         var contentString = `
           <div style="min-width: 200px; padding: 10px;">
-            <h5 class="mb-1 text-primary"><i class="bi bi-shop me-2"></i><%= j shop.name %></h5>
+            <h5 class="mb-1 text-primary">
+              <i class="bi bi-shop me-2"></i>
+              <a href="<%= shop_path(shop) %>" class="text-primary text-decoration-none"><%= j shop.name %></a>
+            </h5>
             <p class="mb-1 text-muted"><i class="bi bi-geo-alt-fill me-1"></i><%= j shop.address %></p>
-            <a href="<%= shop_path(shop) %>" class="btn btn-outline-primary btn-sm mt-2">詳細を見る</a>
           </div>
         `;
 
