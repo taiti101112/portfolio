@@ -15,7 +15,7 @@
 
 
 # サービス概要
-〜行きたいカードショップをこれ1つで簡単検索!〜
+〜行きたいカードショップをこれ1つで簡単検索！〜
 
 関東圏のカードショップを取り扱いタイトル・営業時間ごとに検索したり、マップを用いてショップの場所を視覚的に確認できます。<br>
 自分の行きたいカードショップを簡単に探すことができるサービスとなっています。<br>
@@ -52,10 +52,9 @@ https://tcg-place.com
 |---------------------|-----------------------------------------------|
 | サーバーサイド        | Ruby on Rails 7.0.6・Ruby 3.2.2                |
 | フロントエンド        | Ruby on Rails・JavaScript                      |
-| CSSフレームワーク      | Tailwindcss + daisyUI                         |
+| CSSフレームワーク      | Bootstrap                                   |
 | Web API             | Google Maps API  |
 | データベースサーバー   | PostgreSQL                                    |
-| ファイルサーバー       | AWS S3                                        |
 | アプリケーションサーバー | heroku                                       |
 | バージョン管理ツール    | GitHub・Git             
 
@@ -63,6 +62,8 @@ https://tcg-place.com
 ![画像の説明](https://i.gyazo.com/4540d3a0b43f9d5bc7a1ebd7f25ccef1.png)
 
 ## 画面遷移図
+[画面遷移図はこちら](https://www.figma.com/design/KBr222jA9TaSoyXuFKEBjE/TCG-PLACE%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=vJUAc6nxlJd1rSOZ-1)
+
 
 # 今後実装予定の機能
 
