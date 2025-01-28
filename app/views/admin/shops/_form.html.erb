@@ -7,7 +7,7 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :opening_hours, "Opening Hours", class: "form-label" %>
+    <%= form.label :opening_hours, class: "form-label" %>
     <%= form.text_area :opening_hours, rows: 5, class: "form-control" %>
   </div>
 
@@ -28,40 +28,40 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :official_hp, "Official Website", class: "form-label" %>
+    <%= form.label :official_hp, class: "form-label" %>
     <%= form.url_field :official_hp, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :twitter, "Twitter", class: "form-label" %>
+    <%= form.label :twitter, class: "form-label" %>
     <%= form.url_field :twitter, class: "form-control" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :instagram, "Instagram", class: "form-label" %>
+    <%= form.label :instagram, class: "form-label" %>
     <%= form.url_field :instagram, class: "form-control" %>
   </div>
 
 <div class="mb-3">
-  <%= form.label :tag_list, "Tags", class: "form-label" %>
+  <%= form.label :tag_list, class: "form-label" %>
   <%= form.text_field :tag_list, value: @shop.tag_list.join(", "), class: "form-control" %>
   <small class="form-text text-muted">Enter tags separated by commas</small>
 </div>
 
-  <h3>Business Hours</h3>
-  <% Date::DAYNAMES.each_with_index do |day, index| %>
+  <h3>営業時間</h3>
+  <% I18n.t('date.day_names').each_with_index do |day, index| %>
     <% business_hour = @shop.business_hours.find { |bh| bh.day_of_week == index } || @shop.business_hours.build(day_of_week: index) %>
     <div class="mb-3">
       <label class="form-label"><%= day %></label>
       <%= form.fields_for :business_hours, business_hour do |bh_form| %>
         <%= bh_form.hidden_field :day_of_week, value: index %> <!-- 曜日を0から6に設定 -->
         <div class="mb-3">
-          <%= bh_form.label :opening_time, "Opening Time", class: "form-label" %>
+          <%= bh_form.label :opening_time, class: "form-label" %>
           <%= bh_form.time_select :opening_time, default: { hour: 9, minute: 0 }, class: "form-control", required: true %> <!-- デフォルトで9:00 -->
         </div>
 
         <div class="mb-3">
-          <%= bh_form.label :closing_time, "Closing Time", class: "form-label" %>
+          <%= bh_form.label :closing_time, class: "form-label" %>
           <%= bh_form.time_select :closing_time, default: { hour: 18, minute: 0 }, class: "form-control", required: true %> <!-- デフォルトで18:00 -->
         </div>
       <% end %>

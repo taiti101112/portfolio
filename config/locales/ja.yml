@@ -1,4 +1,7 @@
 ja:
+  date:
+    day_names: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
+    abbr_day_names: ["日", "月", "火", "水", "木", "金", "土"]
   devise:
     registrations:
       signed_up: "ユーザー登録が完了しました。"
@@ -69,6 +72,15 @@ ja:
         name: "ショップ名"
         address: "住所"
         phone_number: "電話番号"
+        duel_space_available: "デュエルスペース数"
+        opening_hours: "営業時間"
+        official_hp: "公式HP"
+        twitter: "Twitterアカウント"
+        instagram: "Instagramアカウント"
+        tag_list: "タグ"
+      business_hour:
+        opening_time: "開店時間"
+        closing_time: "閉店時間"
     errors:
       models:
         user:
