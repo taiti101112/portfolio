@@ -23,7 +23,6 @@
 ## サービスURL
 https://tcg-place.com
 
-
 # サービス開発の背景
 関東圏はカードショップが近距離に密集しており、店ごとに取り扱いタイトル・営業時間・デュエルスペースの有無などが異なるため、自分の目当てのカードショップを見つけるのが大変です。<br>
 そこで、条件を指定して自分の目当てのカードショップを検索できるサービスを作ろうと思いました。<br>
@@ -43,6 +42,76 @@ https://tcg-place.com
 # 機能紹介
 
 
+---
+
+### ユーザー登録・ログイン
+
+[![Image from Gyazo](https://i.gyazo.com/f654aea6050aa4e66380a93686a12781.gif)](https://gyazo.com/f654aea6050aa4e66380a93686a12781)
+
+『名前』『メールアドレス』『パスワード』を入力してユーザー登録を行います。
+Googleアカウントを使用してログインすることも可能です。
+<br>
+<br>
+<br>
+
+---
+
+### 複数の条件を入力してショップ検索を行う
+
+[![Image from Gyazo](https://i.gyazo.com/2ab62e3f6f8c19c46e52433e29ea22d0.gif)](https://gyazo.com/2ab62e3f6f8c19c46e52433e29ea22d0)
+
+ショップ一覧画面では自分の目当てのショップを複数の条件を入力して探すことができます。
+動画内では秋葉原にあり、『バトルスピリッツ』というタイトルのカードゲームを取り扱っていて、営業中のショップを検索しています。
+<br>
+<br>
+<br>
+
+---
+
+### マップ画面でショップの位置を確認したがら検索を行う
+
+[![Image from Gyazo](https://i.gyazo.com/0584995bd663dfad9f30e64f16f7e174.gif)](https://gyazo.com/0584995bd663dfad9f30e64f16f7e174)
+
+マップ検索画面ではショップの場所を視覚的に確認しながら検索することができます。
+動画内では秋葉原にある、営業中のショップを検索しています。
+<br>
+<br>
+<br>
+
+---
+
+### ゲームのタイトル名が書かれたタグをクリックして、そのタイトルを取り扱っているショップ一覧を検索
+
+[![Image from Gyazo](https://i.gyazo.com/b8b52f4e4f373e069dc71b57e0ba5c26.gif)](https://gyazo.com/b8b52f4e4f373e069dc71b57e0ba5c26)
+
+ショップ情報欄のカードゲームタイトルの書かれたタグをクリックするとそのタイトルを取り扱っているショップ一覧が表示されます。
+動画内ではポケモンカードゲームを取り扱っているショップ一覧を表示させています。
+<br>
+<br>
+<br>
+
+---
+
+### 詳細画面でショップの位置を確認
+
+[![Image from Gyazo](https://i.gyazo.com/a4e97458fe7e56af273bda64cad2486f.png)](https://gyazo.com/a4e97458fe7e56af273bda64cad2486f)
+
+ショップ詳細画面ではショップの情報に加え、Googleマップ上にショップの位置が表示され、ショップの場所を視覚的に確認することができます。
+<br>
+<br>
+<br>
+
+---
+
+### お気に入り登録機能
+
+[![Image from Gyazo](https://i.gyazo.com/4f486f77d15e271e500b362bead3025c.png)](https://gyazo.com/4f486f77d15e271e500b362bead3025c)
+
+お気に入り一覧画面ではお気に入りに登録したショップを確認することができます。
+
+<br>
+<br>
+
 
 
 # 技術構成について
@@ -58,12 +127,21 @@ https://tcg-place.com
 | アプリケーションサーバー | heroku                                       |
 | バージョン管理ツール    | GitHub・Git             
 
+<br>
+<br>
+
 ## ER図
 ![画像の説明](https://i.gyazo.com/4540d3a0b43f9d5bc7a1ebd7f25ccef1.png)
+
+
+<br>
+<br>
 
 ## 画面遷移図
 [画面遷移図はこちら](https://www.figma.com/design/KBr222jA9TaSoyXuFKEBjE/TCG-PLACE%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=vJUAc6nxlJd1rSOZ-1)
 
+<br>
+<br>
 
 # 今後実装予定の機能
 
