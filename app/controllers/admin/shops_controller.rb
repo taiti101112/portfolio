@@ -11,7 +11,6 @@ module Admin
     def show
     end
 
-
     def new
       @shop = Shop.new
       (1..7).each do |day|

@@ -53,8 +53,5 @@ class Shop < ApplicationRecord
       current_time_seconds
     ).distinct
   }
-  
-  
-  
-  
+
 end
