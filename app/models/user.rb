@@ -12,19 +12,22 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_shops, through: :favorites, source: :shop
 
-  # お気に入り関連メソッド
+  # お気に入り登録
   def favorite(shop)
     favorite_shops << shop
   end
 
+  # お気に入り解除
   def unfavorite(shop)
     favorite_shops.destroy(shop)
   end
 
+  # お気に入り判定
   def favorite?(shop)
     favorite_shops.include?(shop)
   end
 
+  # 管理者判定
   def admin?
     admin
   end
@@ -58,6 +61,5 @@ class User < ApplicationRecord
       nil
     end
   end
-  
-  
+
 end

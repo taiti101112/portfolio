@@ -1,12 +1,6 @@
-/* app/assets/stylesheets/application.scss */
-
 /*
- *= require_tree .
  *= require_self
  */
-
-
-/* app/assets/stylesheets/application.scss */
 
 /* タグのスタイル */
 .tag {
@@ -30,10 +24,6 @@
 .tag .text-white {
   text-decoration: none; /* リンクの下線を削除 */
 }
-
-
-
-
 
 /* ログインフォームのスタイル */
 .login-container {
@@ -62,8 +52,6 @@
   background-color: #0056b3; /* ホバー時の色変更 */
 }
 
-
-
 /* サインアップフォームのスタイル */
 .signup-container {
   display: flex;
@@ -90,9 +78,6 @@
 .btn-primary:hover {
   background-color: #0056b3; /* ホバー時の色変更 */
 }
-
-
-/* app/assets/stylesheets/application.scss */
 
 /* プライバシーポリシーページ用のスタイル */
 .privacy-policy-container {
@@ -134,9 +119,6 @@
   padding-left: 0;
 }
 
-
-/* app/assets/stylesheets/application.scss */
-
 /* 利用規約ページのスタイル */
 .terms-container {
   font-family: 'Arial', sans-serif;
@@ -176,7 +158,6 @@
   border: none;
   padding-left: 0;
 }
-
 
 @media (max-width: 768px) {
   .shop-details {
