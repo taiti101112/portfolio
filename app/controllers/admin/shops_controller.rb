@@ -1,4 +1,3 @@
-# app/controllers/admin/shops_controller.rb
 module Admin
   class ShopsController < ApplicationController
     before_action :authenticate_admin!
@@ -7,21 +6,11 @@ module Admin
     before_action :set_is_admin
 
     def index
-      @q = Shop.ransack(params[:q])
-      if params[:q].present?
-        @shops = @q.result(distinct: true)
-      else
-        @shops = Shop.all
-      end
-
-      if params[:tag_name]
-        @shops = @shops.tagged_with(params[:tag_name])
-      end
     end
 
     def show
-      @tags = @shop.tag_counts_on(:tags)
     end
+
 
     def new
       @shop = Shop.new
@@ -31,7 +20,6 @@ module Admin
     end
     
     def edit
-
     end
 
     def create
@@ -68,8 +56,8 @@ module Admin
       @shop = Shop.find(params[:id])
     end
 
+    # Shopモデルに設定された全てのタグを取得
     def set_tags
-      # Shopモデルに設定された全てのタグを取得
       @tags = ActsAsTaggableOn::Tag.for_context(:tags).most_used
     end
 
