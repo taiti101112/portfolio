@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  # お気に入りに登録
   def create
     @shop = Shop.find(params[:shop_id])
     current_user.favorite(@shop)
@@ -9,6 +10,7 @@ class FavoritesController < ApplicationController
     end
   end
 
+  # お気に入り解除
   def destroy
     @shop = current_user.favorites.find(params[:id]).shop
     current_user.unfavorite(@shop)

@@ -37,8 +37,6 @@
           <td>
             <% if shop.official_hp.present? %>
               <%= link_to '公式HP', shop.official_hp, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
-            <% else %>
-              
             <% end %>
           </td>
         </tr>
@@ -49,15 +47,11 @@
           <td>
             <% if shop.twitter.present? %>
               <%= link_to 'Twitter', shop.twitter, target: "_blank", rel: "noopener noreferrer", class: "text-decoration-none" %>
-            <% else %>
-              
             <% end %>
           </td>
         </tr>
-
       </tbody>
     </table>
-
     <%= render 'tags/tag_list', tag_list: shop.tag_list %>
   </div>
   

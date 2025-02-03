@@ -40,6 +40,7 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
+  # お気に入り登録
   def favorites
     @favorite_shops = current_user.favorite_shops.includes(:user).order(created_at: :desc)
   end

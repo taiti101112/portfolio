@@ -1,4 +1,3 @@
-# app/forms/shop_business_hour_form.rb
 class ShopBusinessHourForm
   include ActiveModel::Model
 
@@ -27,7 +26,6 @@ class ShopBusinessHourForm
     end
 
     if params
-      # 不要な属性を除外
       filtered_params = params.slice(*ATTRIBUTES)
       super(filtered_params)
     else
@@ -48,7 +46,7 @@ class ShopBusinessHourForm
       twitter: twitter,
       instagram: instagram,
       tag_list: tag_list,
-      user_id: user_id # ユーザーIDを設定
+      user_id: user_id
     )
     if shop.save
       business_hours_attributes.each do |bh_attr|
