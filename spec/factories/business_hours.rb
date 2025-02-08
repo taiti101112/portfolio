@@ -1,4 +1,3 @@
-# spec/factories/business_hours.rb
 FactoryBot.define do
   factory :business_hour do
     shop
