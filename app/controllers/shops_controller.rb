@@ -27,6 +27,9 @@ class ShopsController < ApplicationController
 
     # 五十音順に並び替え
     @shops = @shops.order(:name)
+
+    # ショップの数を数える
+    @shop_count = @shops.count
   
     # ページネーション
     @shops = @shops.page(params[:page]).per(12)
