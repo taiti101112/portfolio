@@ -60,6 +60,6 @@
 
   <!-- アカウント削除 -->
   <h5 class="mt-5 text-muted">アカウントの削除</h5>
-  <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+  <%= button_to "アカウントを削除する", registration_path(resource_name),  method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } }, class: "btn btn-outline-danger btn-sm" %>
   
 </div>
