@@ -33,6 +33,7 @@
         <%= f.search_field :name_cont, class: "form-control form-control-dark form-control-sm", placeholder: "ショップ名から探す", aria: { label: "検索" } %>
         <%= f.submit "検索", class: "btn btn-outline-light btn-sm ms-2" %>
       <% end %>
+      
       <div class="text-end d-flex justify-content-end align-items-center">
         <% if user_signed_in? %>
           <%= link_to "マイページ", "/users/#{current_user.id}", class: "btn btn-outline-light me-2" %>
