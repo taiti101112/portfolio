@@ -4,6 +4,7 @@
     <h5 class="card-title">検索条件</h5>
     <%= form_with url: map_shops_path, method: :get, local: true, class: "mb-4" do |form| %>
       <div class="row align-items-center">
+        
         <!-- ショップ名検索 -->
         <div class="col-md-4">
           <%= form.text_field 'q[name_cont]', value: params.dig(:q, :name_cont), class: "form-control", placeholder: "ショップ名を入力" %>
