@@ -4,8 +4,21 @@ class ShopsController < ApplicationController
   before_action :set_is_admin, only: [:index, :show, :favorites]
 
   def index
-    # 検索条件を設定
-    @q = Shop.ransack(params[:q])
+
+    if params[:q].present?
+
+      key_words = params[:q][:name_cont].split(/[\p{blank}\s]+/)
+
+      grouping_hash = key_words.reduce({}) do |hash, word|
+        hash.merge(word => {name_cont: word})
+      end
+      
+    end
+
+    @q = Shop.ransack({
+      combinator: "and", 
+      groupings: grouping_hash
+      })
   
     # 検索条件がある場合は検索条件に当てはまるショップを取得し、ない場合は全てのショップを取得
     if params[:q].present? && params[:q][:name_cont].present?
