@@ -4,7 +4,6 @@ class ShopsController < ApplicationController
   before_action :set_is_admin, only: [:index, :show, :favorites]
 
   def index
-
     if params[:q].present?
 
       key_words = params[:q][:name_cont].split(/[\p{blank}\s]+/)
@@ -62,8 +61,20 @@ class ShopsController < ApplicationController
   end
 
   def map
-    # 検索条件を設定
-    @q = Shop.ransack(params[:q])
+    if params[:q].present?
+
+      key_words = params[:q][:name_cont].split(/[\p{blank}\s]+/)
+
+      grouping_hash = key_words.reduce({}) do |hash, word|
+        hash.merge(word => {name_cont: word})
+      end
+      
+    end
+
+    @q = Shop.ransack({
+      combinator: "and", 
+      groupings: grouping_hash
+      })
   
     # 検索条件がある場合は検索条件に当てはまるショップを取得し、ない場合は全てのショップを取得
     if params[:q].present? && params[:q][:name_cont].present?
@@ -85,6 +96,12 @@ class ShopsController < ApplicationController
 
     # 五十音順に並び替え
     @shops = @shops.order(:name)
+
+    # ショップの数を数える
+    @shop_count = @shops.count
+  
+    # ページネーション
+    @shops = @shops.page(params[:page]).per(12)
   
     # JavaScriptに情報を渡す
     gon.shops = @shops
