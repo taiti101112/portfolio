@@ -27,7 +27,7 @@ class User < ApplicationRecord
     favorite_shops.include?(shop)
   end
 
-  # 管理者判定
+  # 管理者かどうかを判定
   def admin?
     admin
   end
@@ -37,7 +37,7 @@ class User < ApplicationRecord
     user = find_by(email: auth[:info][:email])
   
     if user
-      # 既存ユーザーの場合、名前やプロバイダー情報を更新
+      # 既存ユーザーの場合、情報を更新する
       user.update(
         provider: auth[:provider],
         uid: auth[:uid],
