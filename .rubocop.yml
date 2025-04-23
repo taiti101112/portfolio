@@ -1,0 +1,11 @@
+# RuboCopのメイン設定ファイル
+# どんなルールでコードをチェックするかを定義する
+require:
+  - rubocop-rails
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
