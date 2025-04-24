@@ -14,7 +14,7 @@ class Shop < ApplicationRecord
   acts_as_taggable
 
   # ransackで利用可能な属性を指定
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[name]
   end
 
@@ -24,28 +24,28 @@ class Shop < ApplicationRecord
     current_time = Time.zone.now
     current_day = current_time.wday
     business_hour = business_hours.find_by(day_of_week: current_day)
-  
+
     # 営業時間がない場合はfalseを返す
     return false unless business_hour
-  
+
     # 開店時間と閉店時間を取得
     opening_time = business_hour.opening_time
     closing_time = business_hour.closing_time
-  
+
     # それぞれが0時から経過した秒数を取得
     current_time_seconds = current_time.seconds_since_midnight
     opening_time_seconds = opening_time.seconds_since_midnight
     closing_time_seconds = closing_time.seconds_since_midnight
-  
+
     # 現在時刻が開店時間以上かつ閉店時間以下の時にtrue(営業中)を返す
     current_time_seconds >= opening_time_seconds && current_time_seconds <= closing_time_seconds
   end
 
   # 営業中のショップを取得
-  scope :open_now, -> {
+  scope :open_now, lambda {
     current_time_seconds = Time.zone.now.seconds_since_midnight
     current_day = Time.zone.now.wday
-  
+
     joins(:business_hours).where(
       'business_hours.day_of_week = ? AND EXTRACT(EPOCH FROM business_hours.opening_time) <= ? AND EXTRACT(EPOCH FROM business_hours.closing_time) >= ?',
       current_day,
@@ -53,5 +53,4 @@ class Shop < ApplicationRecord
       current_time_seconds
     ).distinct
   }
-
 end

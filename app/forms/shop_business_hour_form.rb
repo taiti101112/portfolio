@@ -1,7 +1,8 @@
 class ShopBusinessHourForm
   include ActiveModel::Model
 
-  ATTRIBUTES = [:shop_name, :address, :phone_number, :duel_space_available, :opening_hours, :official_hp, :twitter, :instagram, :tag_list, :business_hours_attributes, :user_id]
+  ATTRIBUTES = %i[shop_name address phone_number duel_space_available opening_hours official_hp twitter
+                  instagram tag_list business_hours_attributes user_id]
 
   attr_accessor(*ATTRIBUTES)
 
@@ -18,11 +19,15 @@ class ShopBusinessHourForm
       self.official_hp = shop.official_hp
       self.twitter = shop.twitter
       self.instagram = shop.instagram
-      self.tag_list = shop.tag_list.join(",") if shop.tag_list.present?
-      self.business_hours_attributes = shop.business_hours.map { |bh| bh.attributes.symbolize_keys.slice(:day_of_week, :opening_time, :closing_time) }
+      self.tag_list = shop.tag_list.join(',') if shop.tag_list.present?
+      self.business_hours_attributes = shop.business_hours.map do |bh|
+        bh.attributes.symbolize_keys.slice(:day_of_week, :opening_time, :closing_time)
+      end
     else
       @shop = Shop.new
-      self.business_hours_attributes = (0..6).map { |day| { day_of_week: day, opening_time: '09:00', closing_time: '18:00' } }
+      self.business_hours_attributes = (0..6).map do |day|
+        { day_of_week: day, opening_time: '09:00', closing_time: '18:00' }
+      end
     end
 
     if params

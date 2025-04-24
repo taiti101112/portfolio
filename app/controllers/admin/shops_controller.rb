@@ -1,15 +1,13 @@
 module Admin
   class ShopsController < ApplicationController
     before_action :authenticate_admin!
-    before_action :set_shop, only: [:show, :edit, :update, :destroy, :edit_hours, :update_hours]
+    before_action :set_shop, only: %i[show edit update destroy edit_hours update_hours]
     before_action :set_tags
     before_action :set_is_admin
 
-    def index
-    end
+    def index; end
 
-    def show
-    end
+    def show; end
 
     def new
       @shop = Shop.new
@@ -17,9 +15,8 @@ module Admin
         @shop.business_hours.build(day_of_week: day)
       end
     end
-    
-    def edit
-    end
+
+    def edit; end
 
     def create
       @shop = Shop.new(shop_params)
@@ -63,7 +60,7 @@ module Admin
     def shop_params
       params.require(:shop).permit(
         :name, :address, :phone_number, :duel_space_available, :opening_hours, :official_hp, :twitter, :instagram, :tag_list,
-        business_hours_attributes: [:id, :day_of_week, :opening_time, :closing_time, :_destroy]
+        business_hours_attributes: %i[id day_of_week opening_time closing_time _destroy]
       )
     end
 

@@ -26,7 +26,6 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = ENV['MAILER_SENDER'] || 'no-reply@tcg-place.com'
 
-
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
 
@@ -47,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [:email, :name]
+  config.authentication_keys = %i[email name]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -273,7 +272,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {}
+  config.omniauth :google_oauth2, ENV.fetch('GOOGLE_CLIENT_ID', nil), ENV.fetch('GOOGLE_CLIENT_SECRET', nil), {}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

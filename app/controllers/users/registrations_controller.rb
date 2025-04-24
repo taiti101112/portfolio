@@ -13,9 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |resource|
       if resource.persisted?
-        flash[:notice] = I18n.t('devise.registrations.signed_up') 
+        flash[:notice] = I18n.t('devise.registrations.signed_up')
       else
-        flash[:alert] = I18n.t('devise.registrations.signed_up_failure') 
+        flash[:alert] = I18n.t('devise.registrations.signed_up_failure')
       end
     end
   end
@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
-  
+
   # GET /resource/edit
   # def edit
   #   super
@@ -67,7 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # 新規登録後のリダイレクト先を指定
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     shops_path
   end
 

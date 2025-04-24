@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :map]
+  before_action :authenticate_user!, except: %i[index show map]
   before_action :set_tags # 全てのアクションで @tags を利用可能にする
-  before_action :set_is_admin, only: [:index, :show, :favorites]
+  before_action :set_is_admin, only: %i[index show favorites]
 
   def index
     if params[:q].present?
@@ -9,47 +9,42 @@ class ShopsController < ApplicationController
       key_words = params[:q][:name_cont].split(/[\p{blank}\s]+/)
 
       grouping_hash = key_words.reduce({}) do |hash, word|
-        hash.merge(word => {name_cont: word})
+        hash.merge(word => { name_cont: word })
       end
-      
+
     end
 
     @q = Shop.ransack({
-      combinator: "and", 
-      groupings: grouping_hash
-      })
-  
+                        combinator: 'and',
+                        groupings: grouping_hash
+                      })
+
     # 検索条件がある場合は検索条件に当てはまるショップを取得し、ない場合は全てのショップを取得
-    if params[:q].present? && params[:q][:name_cont].present?
-      @shops = @q.result(distinct: true).includes(:business_hours)
-    else
-      # 検索条件がない場合は全ショップを取得
-      @shops = Shop.includes(:business_hours).all
-    end
-  
+    @shops = if params[:q].present? && params[:q][:name_cont].present?
+               @q.result(distinct: true).includes(:business_hours)
+             else
+               # 検索条件がない場合は全ショップを取得
+               Shop.includes(:business_hours).all
+             end
+
     # タグに当てはまるショップを取得
-    if params[:tag_name].present?
-      @shops = @shops.tagged_with(params[:tag_name])
-    end
-  
+    @shops = @shops.tagged_with(params[:tag_name]) if params[:tag_name].present?
+
     # 営業中のショップを取得
-    if params[:open_now] == '1'
-      @shops = @shops.open_now
-    end
+    @shops = @shops.open_now if params[:open_now] == '1'
 
     # 五十音順に並び替え
     @shops = @shops.order(:name)
 
     # ショップの数を数える
     @shop_count = @shops.count
-  
+
     # ページネーション
     @shops = @shops.page(params[:page]).per(12)
-  
+
     # JavaScriptに情報を渡す
     gon.shops = @shops
   end
-  
 
   def show
     @shop = Shop.find(params[:id])
@@ -66,43 +61,39 @@ class ShopsController < ApplicationController
       key_words = params[:q][:name_cont].split(/[\p{blank}\s]+/)
 
       grouping_hash = key_words.reduce({}) do |hash, word|
-        hash.merge(word => {name_cont: word})
+        hash.merge(word => { name_cont: word })
       end
-      
+
     end
 
     @q = Shop.ransack({
-      combinator: "and", 
-      groupings: grouping_hash
-      })
-  
+                        combinator: 'and',
+                        groupings: grouping_hash
+                      })
+
     # 検索条件がある場合は検索条件に当てはまるショップを取得し、ない場合は全てのショップを取得
-    if params[:q].present? && params[:q][:name_cont].present?
-      @shops = @q.result(distinct: true).includes(:business_hours)
-    else
-      # 検索条件がない場合は全ショップを取得
-      @shops = Shop.includes(:business_hours).all
-    end
-  
+    @shops = if params[:q].present? && params[:q][:name_cont].present?
+               @q.result(distinct: true).includes(:business_hours)
+             else
+               # 検索条件がない場合は全ショップを取得
+               Shop.includes(:business_hours).all
+             end
+
     # タグに当てはまるショップを取得
-    if params[:tag_name].present?
-      @shops = @shops.tagged_with(params[:tag_name])
-    end
-  
+    @shops = @shops.tagged_with(params[:tag_name]) if params[:tag_name].present?
+
     # 営業中のショップを取得
-    if params[:open_now] == '1'
-      @shops = @shops.open_now
-    end
+    @shops = @shops.open_now if params[:open_now] == '1'
 
     # 五十音順に並び替え
     @shops = @shops.order(:name)
 
     # ショップの数を数える
     @shop_count = @shops.count
-  
+
     # ページネーション
     @shops = @shops.page(params[:page]).per(12)
-  
+
     # JavaScriptに情報を渡す
     gon.shops = @shops
   end

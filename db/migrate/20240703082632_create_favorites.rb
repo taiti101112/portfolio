@@ -7,8 +7,8 @@ class CreateFavorites < ActiveRecord::Migration[6.0]
     end
 
     # インデックスが存在しない場合のみ作成する
-    unless index_exists?(:favorites, [:user_id, :shop_id], unique: true)
-      add_index :favorites, [:user_id, :shop_id], unique: true
-    end
+    return if index_exists?(:favorites, %i[user_id shop_id], unique: true)
+
+    add_index :favorites, %i[user_id shop_id], unique: true
   end
 end
