@@ -1,11 +1,9 @@
 class PagesController < ApplicationController
   # プライバシーポリシー
-  def privacy_policy
-  end
+  def privacy_policy; end
 
   # 利用規約
-  def terms_of_service
-  end
+  def terms_of_service; end
 
   # お問い合わせ機能
   def contact
@@ -15,7 +13,7 @@ class PagesController < ApplicationController
       @contact_email = params[:email]
       # 指定されたメールアドレスにメールを送信
       ContactMailer.contact_email(@name, @contact_email, @message).deliver_now
-      redirect_to contact_path, notice: "お問合せありがとうございました"
+      redirect_to contact_path, notice: 'お問合せありがとうございました'
     else
       @name = ''
       @message = ''
@@ -28,5 +26,4 @@ class PagesController < ApplicationController
   def contact_params
     params.permit(:name, :email, :message)
   end
-
 end

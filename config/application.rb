@@ -1,8 +1,8 @@
 Dotenv::Railtie.load if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
 
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 Bundler.require(*Rails.groups)
 

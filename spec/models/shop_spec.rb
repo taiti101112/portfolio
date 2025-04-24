@@ -22,13 +22,13 @@ RSpec.describe Shop, type: :model do
   describe '#open_now?' do
     it 'returns true if the shop is open now' do
       create(:business_hour, shop: shop, day_of_week: Time.zone.now.wday,
-             opening_time: 1.hour.ago, closing_time: 1.hour.from_now)
+                             opening_time: 1.hour.ago, closing_time: 1.hour.from_now)
       expect(shop.open_now?).to be true
     end
 
     it 'returns false if the shop is closed now' do
       create(:business_hour, shop: shop, day_of_week: Time.zone.now.wday,
-             opening_time: 2.hours.ago, closing_time: 1.hour.ago)
+                             opening_time: 2.hours.ago, closing_time: 1.hour.ago)
       expect(shop.open_now?).to be false
     end
   end

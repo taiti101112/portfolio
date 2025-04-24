@@ -35,13 +35,13 @@ class User < ApplicationRecord
   # OmniAuthによるユーザー検索・作成
   def self.from_omniauth(auth)
     user = find_by(email: auth[:info][:email])
-  
+
     if user
       # 既存ユーザーの場合、情報を更新する
       user.update(
         provider: auth[:provider],
         uid: auth[:uid],
-        name: auth[:info][:name].presence || user.name || "Googleユーザー"
+        name: auth[:info][:name].presence || user.name || 'Googleユーザー'
       )
     else
       # 新規ユーザー作成
@@ -49,17 +49,16 @@ class User < ApplicationRecord
         provider: auth[:provider],
         uid: auth[:uid],
         email: auth[:info][:email],
-        name: auth[:info][:name].presence || "Googleユーザー",
+        name: auth[:info][:name].presence || 'Googleユーザー',
         password: Devise.friendly_token[0, 20]
       )
     end
-  
+
     if user.save
       user
     else
-      Rails.logger.error "OmniAuth error: #{user.errors.full_messages.join(", ")}"
+      Rails.logger.error "OmniAuth error: #{user.errors.full_messages.join(', ')}"
       nil
     end
   end
-
 end

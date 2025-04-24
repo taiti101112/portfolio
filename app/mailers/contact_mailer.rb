@@ -7,5 +7,4 @@ class ContactMailer < ApplicationMailer
     @message = message
     mail(to: 'sakauchi.runteq@gmail.com', subject: 'お問い合わせ')
   end
-
 end

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   }
 
   # 一般ユーザーがアクセスできるショップの一覧と詳細
-  resources :shops, only: [:index, :show] do
+  resources :shops, only: %i[index show] do
     collection do
       get :favorites
       get :map
