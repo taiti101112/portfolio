@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
       flash[:notice] = 'Googleアカウントでログインしました。'
     else
-      redirect_to new_user_registration_url, alert: 'Googleログインに失敗しました。'
+      redirect_to new_user_registration_url, alert: 'Googleアカウントでのログインに失敗しました。'
     end
   end
 
