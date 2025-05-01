@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show map]
-  before_action :set_tags # 全てのアクションで @tags を利用可能にする
+  before_action :set_tags
   before_action :set_is_admin, only: %i[index show favorites]
 
   def index
