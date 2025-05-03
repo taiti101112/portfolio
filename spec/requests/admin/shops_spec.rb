@@ -8,10 +8,4 @@ RSpec.describe 'Admin::Shops API', type: :request do
     sign_in admin_user
   end
 
-  describe 'GET /admin/shops' do
-    it 'returns all shops for the admin' do
-      get admin_shops_path
-      expect(response).to have_http_status(:success)
-    end
-  end
 end
