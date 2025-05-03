@@ -22,7 +22,4 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 
-  config.include Rails::Controller::Testing::TemplateAssertions, type: :controller
-  config.include Rails::Controller::Testing::Integration, type: :controller
-  config.include Rails::Controller::Testing::TestProcess, type: :controller
 end
