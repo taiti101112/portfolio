@@ -4,11 +4,11 @@ RSpec.describe Shop, type: :model do
   let(:user) { create(:user) }
   let(:shop) { create(:shop, user: user) }
 
-  it 'ショップモデルにnameが存在すること' do
+  it 'shopモデルにnameが存在すること' do
     expect(shop).to be_valid
   end
 
-  it 'ショップモデルにnameが存在しない場合にバリデーションが働くこと' do
+  it 'shopモデルにnameが存在しない場合にバリデーションが働くこと' do
     shop.name = nil
     expect(shop).to_not be_valid
   end

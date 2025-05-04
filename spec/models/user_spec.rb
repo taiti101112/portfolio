@@ -4,16 +4,16 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:shop) { create(:shop) }
 
-  it 'ユーザーモデルにnameとemailが存在すること' do
+  it 'userモデルにnameとemailが存在すること' do
     expect(user).to be_valid
   end
 
-  it 'ユーザーモデルにemailが存在しない場合にバリデーションが働くこと' do
+  it 'userモデルにemailが存在しない場合にバリデーションが働くこと' do
     user.email = nil
     expect(user).to_not be_valid
   end
 
-  it 'ユーザーモデルにnameが存在しない場合にバリデーションが働くこと' do
+  it 'userモデルにnameが存在しない場合にバリデーションが働くこと' do
     user.name = nil
     expect(user).to_not be_valid
   end
