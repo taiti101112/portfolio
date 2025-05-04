@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Favorites API', type: :request do
+RSpec.describe 'お気に入り機能', type: :request do
   let!(:user) { create(:user) }
   let!(:shop) { create(:shop) }
 
@@ -8,8 +8,8 @@ RSpec.describe 'Favorites API', type: :request do
     sign_in user
   end
 
-  describe 'POST /favorites' do
-    it 'creates a favorite for the shop' do
+  describe 'お気に入り登録' do
+    it 'お気に入り登録できること' do
       expect do
         post favorites_path, params: { shop_id: shop.id }, headers: { 'ACCEPT' => 'application/json' }
       end.to change(Favorite, :count).by(1)
@@ -19,10 +19,10 @@ RSpec.describe 'Favorites API', type: :request do
     end
   end
 
-  describe 'DELETE /favorites/:id' do
+  describe 'お気に入り削除' do
     let!(:favorite) { create(:favorite, user: user, shop: shop) }
 
-    it 'deletes the favorite' do
+    it 'お気に入り登録を解除できること' do
       expect do
         delete favorite_path(favorite), headers: { 'ACCEPT' => 'application/json' }
       end.to change(Favorite, :count).by(-1)

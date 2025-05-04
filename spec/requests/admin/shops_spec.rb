@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin::Shops API', type: :request do
+RSpec.describe '管理者アカウント', type: :request do
   let!(:admin_user) { create(:user, admin: true) }
   let!(:shop) { create(:shop) }
 
