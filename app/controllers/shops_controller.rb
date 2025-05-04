@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShopsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show map]
   before_action :set_tags

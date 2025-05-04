@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ShopBusinessHourForm
   include ActiveModel::Model
 
   ATTRIBUTES = %i[shop_name address phone_number duel_space_available opening_hours official_hp twitter
-                  instagram tag_list business_hours_attributes user_id]
+                  instagram tag_list business_hours_attributes user_id].freeze
 
   attr_accessor(*ATTRIBUTES)
 

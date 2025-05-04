@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :set_ransack_search_object
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -21,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    return if current_user && current_user.admin?
+    return if current_user&.admin?
 
     redirect_to root_path
   end
