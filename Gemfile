@@ -81,6 +81,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'bootstrap-kaminari-views'
 
+gem 'rspec-json_expectations'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -116,4 +118,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'rails-controller-testing'
 end
