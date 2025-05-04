@@ -67,10 +67,6 @@ gem 'sassc'
 
 gem 'importmap-rails'
 
-gem 'rspec-json_expectations', require: false
-
-gem 'rails-controller-testing', require: false
-
 gem 'rails-i18n'
 
 gem 'omniauth-rails_csrf_protection'
