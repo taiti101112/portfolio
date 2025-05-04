@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Dotenv::Railtie.load if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
 
 require_relative 'boot'

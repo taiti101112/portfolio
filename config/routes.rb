@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # 静的ページのルーティング
   get 'privacy_policy', to: 'pages#privacy_policy'
