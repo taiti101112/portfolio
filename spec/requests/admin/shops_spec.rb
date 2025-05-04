@@ -7,5 +7,4 @@ RSpec.describe '管理者アカウント', type: :request do
   before do
     sign_in admin_user
   end
-
 end
