@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Shops API', type: :request do
+RSpec.describe 'ショップ機能', type: :request do
   let!(:user) { create(:user) }
   let!(:shop) { create(:shop, user: user) }
   let!(:business_hour) do
