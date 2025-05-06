@@ -79,8 +79,6 @@ gem 'omniauth-google-oauth2'
 
 gem 'bootstrap-kaminari-views'
 
-gem 'rspec-json_expectations'
-
 gem 'meta-tags'
 
 # Use Sass to process CSS
@@ -119,4 +117,5 @@ group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
+  gem 'rspec-json_expectations'
 end
