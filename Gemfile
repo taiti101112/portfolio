@@ -81,6 +81,8 @@ gem 'bootstrap-kaminari-views'
 
 gem 'rspec-json_expectations'
 
+gem 'meta-tags'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
